@@ -1,0 +1,279 @@
+<!-- Reference: Code Institute Curriculum and Code Star Project -->
+<!-- Reference: https://github.com/flatplanet/Django-CRM -->
+<!-- Reference: https://getbootstrap.com -->
+<!-- Notes: Below code is based on the above references and modifed for the project -->
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+  <title>Restaurant - Fine Dine - Menu</title>
+  <meta name="description" content="Explore our delectable menu featuring exquisite dishes prepared with fresh, seasonal ingredients. Find the perfect meal for your next fine-dining experience.">
+</head>
+
+<!-- Reference in modified parts below: Code Institute Curriculum and Code Star Project --> 
+<body>  
+{% extends "base.html" %} {% block content %}
+
+<section class="d-flex justify-content-center align-items-center min-vh-100 hero">
+  <div class="bg-image overlay" style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero5_dopqhl.webp)"></div>
+  
+  <div class="container position-absolute top-50 start-50 translate-middle text-center">
+    <h2><b>Welcome to Restaurant Fine Dine Food and Beverages Menu</b></h2>
+    <p><b>Below you find our delicious food and beverages with cocktails from our bar menu!</b></p>
+    <a href="/reservation_form/" class="btn btn-primary"
+        >Make a Reservation (Login to Book a Table or Request a Table)</a
+      >
+  </div>
+</section>
+
+<section class="container text-center py-5">
+<h2>Starters</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Seared Ahi Tuna with Wasabi Aioli (Gluten-Free)</h3>
+<p class="card-text">Marinated ahi tuna steaks seared to medium-rare, served with a spicy wasabi aioli and pickled ginger.</p>
+<span class="price">$24.00</span>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Roasted Butternut Squash Soup (Vegan)</h3>
+<p class="card-text">Creamy roasted butternut squash soup with a touch of coconut milk, garnished with toasted pumpkin seeds and fresh herbs.</p>
+<span class="price">$18.00</span>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Burrata Caprese Salad (Vegetarian)</h3>
+<p class="card-text">Fresh mozzarella cheese filled with creamy stracciatella, served with heirloom tomatoes, basil pesto, and balsamic reduction.</p>
+<span class="price">$22.00</span>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Crispy Calamari with Marinara Sauce</h3>
+<p class="card-text">Lightly battered and fried calamari rings served with a zesty marinara sauce for dipping.</p>
+<span class="price">$16.00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="container text-center py-5">
+<h2>Main Courses</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Seared Scallops with Lemon Risotto</h3>
+<span class="price">$38.00</span>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Roasted Rack of Lamb with Mint Jus</h3>
+<span class="price">$42.00</span>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Heirloom Tomato Tart with Goat Cheese</h3>
+<span class="price">$32.00</span>
+</div>
+</div>
+</div>
+
+<div class="col">
+<div class="card h-100">
+<div class="card-body">
+<h3>Lentil Shepherd's Pie (Vegetarian)</h3>
+<p class="card-text">Hearty lentil stew with vegetables topped with creamy mashed potatoes and baked until golden brown.</p>
+<span class="price">$30.00</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="container text-center py-5">
+<h2>Desserts</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Seasonal Fruit Tart (Vegan)</h3>
+        <p class="card-text">Fresh seasonal fruits baked on a flaky vegan crust, drizzled with a light agave nectar glaze.</p>
+        <span class="price">$12.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>New York-Style Cheesecake</h3>
+        <p class="card-text">Classic creamy cheesecake with a graham cracker crust.</p>
+        <span class="price">$15.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Chocolate Decadence Cake</h3>
+        <p class="card-text">Rich and moist chocolate cake layered with chocolate ganache and topped with fresh berries.</p>
+        <span class="price">$16.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Tiramisu</h3>
+        <p class="card-text">Ladyfingers dipped in espresso and layered with mascarpone cream, dusted with cocoa powder.</p>
+        <span class="price">$14.00</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<section class="container text-center py-5">
+<h2>Beverages</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Wine List (Extensive Selection)</h3>
+        <p class="card-text">We offer a curated selection of wines from around the world to complement your meal. Ask your server for recommendations.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Craft Beers</h3>
+        <p class="card-text">Selection of local and international craft beers on tap and by the bottle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Classic Cocktails</h3>
+        <p class="card-text">Our bartenders skillfully craft a range of classic and signature cocktails. Enjoy a perfectly mixed drink before, during, or after your meal.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Non-Alcoholic Beverages</h3>
+        <p class="card-text">We offer a variety of soft drinks, juices, teas, and specialty coffees.</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+  <section class="container text-center py-5">
+    <h2>Cocktails</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3>Margarita</h3>
+            <p class="card-text">Tequila, lime juice, and orange liqueur, served on the rocks or frozen with a salted rim.</p>
+            <span class="price">$14.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3>Old Fashioned</h3>
+            <p class="card-text">Bourbon whiskey, sugar, bitters, and an orange twist, a timeless classic.</p>
+            <span class="price">$15.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3>Mojito</h3>
+            <p class="card-text">White rum, mint, lime juice, sugar, and soda water, a refreshing summer drink.</p>
+            <span class="price">$14.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3>Daiquiri</h3>
+            <p class="card-text">Rum, lime juice, and simple syrup, a classic Cuban cocktail.</p>
+            <span class="price">$13.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3>Negroni</h3>
+            <p class="card-text">Gin, Campari, and sweet vermouth, a bitter and complex cocktail.</p>
+            <span class="price">$16.00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h3>Moscow Mule</h3>
+            <p class="card-text">Vodka, ginger beer, and lime juice, served in a copper mug.</p>
+            <span class="price">$15.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>  
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
+</body>
+</html>

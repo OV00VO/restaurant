@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+  <title>Restaurant - Fine Dine - Home</title>
+  <meta
+    name="description"
+    content="Experience exquisite dining at our fine-dine restaurant. Book your table today and savor delicious food in an elegant ambiance."
+  >
+</head>
+<body>
+
+  {% extends 'base.html' %}  {% block content %}
+
+    <section
+      class="d-flex justify-content-center align-items-center min-vh-100 hero"
+    >
+      <div
+        class="bg-image overlay"
+        style="
+          background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero1_eaqdyk.webp);
+        "
+      ></div>
+      <div
+        class="container position-absolute top-50 start-50 translate-middle text-center"
+      >
+        <h2><b>Welcome to Restaurant Fine Dine</b></h2>
+        <p>
+          <b>
+            Experience our delicious food and beverages in a vibrant atmosphere, find more information below!
+          </b>
+        </p>
+        <a href="/reservation_form/" class="btn btn-primary"
+          >Make a Reservation (Login to Book a Table or Request a Table)</a
+        >
+      </div>
+    </section>
+
+    <section class="container py-5">
+      <h2>Step into a World of Refined Elegance</h2>
+      <p>
+        Our restaurant boasts a warm and inviting atmosphere, perfect for any occasion. Soft lighting, plush seating, and the gentle murmur of conversation create a setting that enhances your experience.
+      </p>
+    </section>
+
+    <section
+      class="container py-5 text-center d-flex row row-cols-1 row-cols-md-2 g-4 mb-5"
+      style="margin: 0 auto"
+    >
+      <div class="col">
+        <div class="card-body">
+          <h5 class="card-title">Dining Room (11:00 AM - 10:00 PM)</h5>
+          <p class="card-text">
+            Indulge in our curated menus in our elegant dining room. Perfect for a business lunch, a romantic dinner, or a celebratory gathering, our attentive staff ensures your comfort and satisfaction.
+          </p>
+          <a href="menu/#starters" class="btn btn-primary">Explore Menu</a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card-body">
+          <h5 class="card-title">Cocktail Bar (6:00 PM - 2:00 AM)</h5>
+          <p class="card-text">
+            Unwind and socialize in our stylish cocktail bar. Our talented mixologists craft innovative and classic cocktails using premium spirits. Relax with friends, enjoy live music (on select nights), or simply savor a perfectly crafted drink.
+          </p>
+          <a href="menu/#cocktail" class="btn btn-primary">See Our Cocktail List</a>
+        </div>
+      </div> 
+    </section>
+<br>
+  {% endblock %}
+</body>
+</html>

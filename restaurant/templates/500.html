@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+  <title>Restaurant - Fine Dine - 500</title>
+  <meta name="description" content="Secure your table at our fine-dining restaurant! Book your reservation online quickly and easily. Enjoy an unforgettable culinary experience.">
+</head>
+
+<body>
+{% extends "base.html" %} {% block content %}
+<br>
+<br>
+<br>
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2>Login is Required for these pages!</h2>
+      <p><b>Please Sign In, Register or Request a Table in the form below.</b></p>
+
+      <p>
+        Reservations & Inquiries - We recommend making a reservation to secure
+        your desired table, especially for evenings and weekends. You can
+        easily request a table online or contact us for further information.
+      </p>
+
+      <form id="contact-form" method="POST" action="https://formdump.codeinstitute.net" target="_blank">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="contactName">Name:</label>
+            <input type="text" class="form-control" id="contactName" name="contactName" placeholder="Enter Your Name" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="contactPhone">Phone Number:</label>
+            <input type="tel" class="form-control" id="contactPhone" name="contactPhone" placeholder="Enter Your Phone Number" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="reservationDate">Date:</label>
+            <input type="date" class="form-control" id="reservationDate" name="reservationDate" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="reservationTime">Time:</label>
+            <input type="time" class="form-control" id="reservationTime" name="reservationTime" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="numGuests">Number of Guests:</label>
+            <div class="input-group">
+              <input type="number" min="1" max="100" class="form-control" id="numGuests" name="numGuests" required>
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="occasion">Occasion:</label>
+            <div class="row">
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="occasion" name="occasion" placeholder="Enter Occasion">
+              </div>
+              <div class="col-md-4">
+                <select class="form-control" id="predefinedOccasion">
+                  <option value="">Event</option>
+                  <option value="birthday">Birthday Celebration</option>
+                  <option value="anniversary">Anniversary Dinner</option>
+                  <option value="business">Business Meeting</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+           <div class="text-center mt-5">
+          <a href="account_login" class="btn btn-success">Sign In</a>
+          <a href="account_signup" class="btn btn-secondary">Register</a>
+          <a href="reservation_form" class="btn btn-primary">Request a Table</a>
+        </div>
+      </form>
+
+      <div class="container py-5 text-center">
+        <h2>Follow Us</h2>
+        <p>
+          Stay connected with Restaurant Fine Dine and discover the latest
+          culinary creations, special events, and exclusive offers.
+        </p>
+        <a href="https://www.facebook.com" target="_blank" class="btn btn-secondary mx-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://www.instagram.com" target="_blank" class="btn btn-secondary mx-2"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+</body>
+</html>

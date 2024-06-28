@@ -1,0 +1,77 @@
+<!-- Reference: Code Institute Curriculum and Code Star Project -->
+<!-- Reference: https://github.com/flatplanet/Django-CRM -->
+<!-- Reference: https://getbootstrap.com -->
+<!-- Notes: Below code is based on the above references and modifed for the project -->
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+  <title>Restaurant - Fine Dine - About</title>
+  <meta name="description" content="Secure your table at our fine-dining restaurant! Book your reservation online quickly and easily. Enjoy an unforgettable culinary experience.">
+</head>
+
+<body> 
+<!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
+
+{% extends "base.html" %}{% block content %}
+<section class="d-flex justify-content-center align-items-center min-vh-100 hero">
+  <div class="bg-image overlay" style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero2_mtlegc.webp);"></div>
+  <div class="container position-absolute top-50 start-50 translate-middle text-center">
+    <h2><b>About Us at Restaurant Fine Dine</b></h2>
+    <p><b>Below you can read more about our Restaurant Fine Dine Experience</b></p>
+    <a href="/reservation_form/" class="btn btn-primary"
+        >Make a Reservation (Login to Book a Table or Request a Table)</a>
+</div></section>
+
+<section class="container py-5">
+
+<h2>Restaurant Fine Dine</h2>
+
+<p>Welcome to Restaurant Fine Dine, a haven for discerning palates and unforgettable experiences. We offer an exquisite selection of dishes prepared with the freshest seasonal ingredients and meticulous attention to detail. Whether you're seeking a sophisticated meal, a vibrant social scene, or a relaxing midday escape, we have a space to suit your mood.</p>
+
+<h3>Ambiance</h3>
+
+<p>Step into a world of refined elegance. Our restaurant boasts a warm and inviting atmosphere, perfect for any occasion. Soft lighting, plush seating, and the gentle murmur of conversation create a setting that enhances your experience.</p>
+
+<h2 class="mt-5">Unwind & Explore</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Dining Room (11:00 AM - 10:00 PM)</h3>
+        <p class="card-text">
+          Indulge in our curated menus in our elegant dining room. Perfect for a business lunch, a romantic dinner, or a celebratory gathering, our attentive staff ensures your comfort and satisfaction.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Cocktail Bar (6:00 PM - 2:00 AM)</h3>
+        <p class="card-text">
+          Unwind and socialize in our stylish cocktail bar. Our talented mixologists craft innovative and classic cocktails using premium spirits. Relax with friends, enjoy live music (on select nights), or simply savor a perfectly crafted drink.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h3>Nightclub (10:00 PM - 2:00 AM)</h3>
+        <p class="card-text">
+          As the evening progresses, the energy shifts, and our nightclub comes alive. Dance the night away to pulsating music by our resident DJs, or enjoy a VIP experience in one of our exclusive booths.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<h3>Experience the Difference</h3>
+<p>At Restaurant Fine Dine, we are committed to providing an exceptional experience that exceeds expectations. Our attentive staff is dedicated to ensuring your comfort and satisfaction from the moment you arrive. We invite you to explore our diverse offerings and create lasting memories at our place.</p>
+</section>
+<br>
+{% endblock %}
+</body>
+</html>
