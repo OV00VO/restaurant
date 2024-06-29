@@ -179,7 +179,7 @@ Set the DATABASES settings in settings.py using the ElephantSQL URL.
 `python manage.py migrate`
 
 ### Create a Superuser Account:
-`python manage.py createsuperuser`
+`python manage.py migrate`
 
 ### Run the Development Server:
 `python manage.py runserver`
