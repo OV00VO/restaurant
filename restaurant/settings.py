@@ -21,7 +21,7 @@ load_dotenv()
 
 from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT
 
-DEBUG = False
+DEBUG = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookatable',
     'pytest',
+    'debug_toolbar',
 ]
 
 SITE_ID = 1
@@ -99,7 +100,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'restaurant.urls'
 
@@ -141,7 +145,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static',)]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -150,6 +154,6 @@ AUTHENTICATION = {
 }
 
 AUTHENTICATION_BACKENDS = [
-#    'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',   
 ]

@@ -2,6 +2,6 @@
 # Reference in modified parts: https://github.com/flatplanet/Django-CRM
 
 from django.contrib import admin
-from .models import Reservation
+from .models import Reservation, Booking
 
 admin.site.register(Reservation)

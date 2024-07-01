@@ -69,10 +69,9 @@
       {% endfor %}
     </tbody>
   </table>
-  <h2>Create a New Reservation</h2>
-  <form action="{% url 'create_reservation' %}" method="post">
-    {% csrf_token %}  <button type="submit" class="btn btn-primary">Create Reservation</button>
-  </form>
+<h2>Create a New Reservation</h2>
+<a href="/create_reservation/" class="btn btn-primary"
+  >Create Reservation</a>
 </main>
 {% else %}
 
