@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 <head>
-  <title>Restaurant - Fine Dine - Contact</title>
+  <title>Restaurant - Fine Dine - Create Reservation</title>
   <meta name="description" content="Plan your unforgettable fine-dining 
   experience! Book a table online at our restaurant and savor exquisite cuisine
   in an elegant ambiance.">
@@ -23,7 +23,7 @@
 
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
 <h2>Please Create Your Next Reservation Here!</h2>
-<form method="POST" action="create_reservation">
+<form method="POST" action="create_reservation/">
   {% csrf_token %}
   <div class="row">
     <div class="col-md-6 mb-3">
@@ -36,29 +36,21 @@
     </div>
     <div class="col-md-6 mb-3">
       <label for="number_of_guests" class="form-label">Guests</label>
-      <input
-        type="number"
-        class="form-control px-3"
-        id="number_of_guests"
-        name="number_of_guests">
+      <input type="number" class="form-control px-3" id="number_of_guests" name="number_of_guests">
     </div>
     <div class="col-md-6 mb-3">
       <label for="occasion" class="form-label">Occasion</label>
-      <input
-        type="text"
-        class="form-control px-3"
-        id="occasion"
-        name="occasion">
+      <input type="text" class="form-control px-3" id="occasion" name="occasion">
     </div>
-   <div class="form-check form-check-inline d-flex justify-content-between">
-  <div class="ms-auto">
-    <a href="agreed_to_terms">Read Terms & Conditions</a>
-    <label class="form-check-label" for="agreed_to_terms">
-      I agree to the terms and conditions
-    </label>
-    <input type="checkbox" class="form-check-input" id="agreed_to_terms" name="agreed_to_terms">
-  </div>
-</div> 
+    <div class="form-check form-check-inline d-flex justify-content-between">
+      <div class="ms-auto">
+        <a href="agreed_to_terms">Read Terms & Conditions</a><br>
+        <label class="form-check-label" for="agreed_to_terms">
+          <input type="checkbox" class="form-check-input" id="agreed_to_terms" name="agreed_to_terms">
+          I agree to the terms and conditions
+        </label>
+      </div>
+    </div>
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">Create Reservation</button>
