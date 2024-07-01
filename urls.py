@@ -5,7 +5,6 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from bookatable import views
 
 
 urlpatterns = [
@@ -13,10 +12,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('account/', include('allauth.urls')),
-
-    path('', include('bookatable.urls')),
-    
-    path('create_reservation/', views.create_reservation, name='create_reservation'),
 
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
 ]

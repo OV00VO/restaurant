@@ -9,30 +9,10 @@ from django.contrib import messages
 from .models import Reservation, User
 from django.conf import settings
 
-def create_reservation(request):
-    context = {}
-    return render(request, 'create_reservation.html')
-
-def read_reservation(request):
-    context = {}
-    return render(request, 'read_reservation.html') 
-
-def update_reservation(request):
-    context = {}
-    return render(request, 'update_reservation.html') 
-
-def delete_reservation(request):
-    context = {}
-    return render(request, 'delete_reservation.html') 
-
-
-def my_reservation(request):
-    context = {}
-    return render(request, 'my_reservation.html') 
 
 def home(request):
-    context = {}
-    return render(request, 'home.html') 
+    return render(request, 'home.html')
+
 
 def about(request):
     return render(request, 'about.html')
@@ -92,12 +72,11 @@ def reservation_form(request):
 def my_reservations(request):
     if not request.user.is_authenticated:
         return redirect('my_reservations')
+ 
     
 def agreed_to_terms(request):
     return render(request, 'agreed_to_terms.html')
-
-def reservation_form(request):
-    return render(request, 'reservation_form.html')
+ 
     
 # Reference in modified parts below: https://github.com/flatplanet/Django-CRM      
 @login_required

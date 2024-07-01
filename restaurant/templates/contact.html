@@ -14,13 +14,22 @@
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
 {% extends "base.html" %}{% block content %}
 
-<section class="d-flex justify-content-center align-items-center min-vh-100 hero">
-  <div class="bg-image overlay" style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero2_mtlegc.webp);"></div>
+<section class="d-flex justify-content-center align-items-center min-vh-100 hero"
+class="bg-image overlay" style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero4_mdavxv); opacity: 0,9;"></div>
   <div class="container position-absolute top-50 start-50 translate-middle text-center">
     <h2><b>Contact Us at Restaurant Fine Dine</b></h2>
     <p><b>Below you can find about more how you can contact at Restaurant Fine Dine</b></p>
     <a href="/reservation_form/" class="btn btn-primary"
         >Make a Reservation (Login to Book a Table or Request a Table)</a>
+        <div class="text-box" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 110%;
+        height: 110%;
+        background-color: rgba(255, 255, 255, 0.8);
+        z-index: -1;
+      "></div>
 </div></section>
 
 <!-- Reference in modified parts below: Code Institute Curriculum and Code Star Project -->
