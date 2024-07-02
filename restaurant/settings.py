@@ -9,14 +9,13 @@
 # Notes: Below code is based on the above references and modifed for the project
 
 import os
+import environ
+# import django
 from dotenv import load_dotenv
 import dj_database_url
 from pathlib import Path
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 import secrets
-
+# django.setup()
 load_dotenv()
 
 from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT
@@ -72,24 +71,13 @@ INSTALLED_APPS = [
     'bookatable',
     'pytest',
     'debug_toolbar',
+#   'django',
+#   'SignupForm',
 ]
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-CLOUDINARY_NAME = os.environ.get('CLOUDINARY_NAME')
-API_KEY = os.environ.get('API_KEY')
-API_SECRET = os.environ.get('API_SECRET')
-
-cloudinary.config(
-    cloud_name=CLOUDINARY_NAME,
-    api_key=API_KEY,
-    api_secret=API_SECRET,
-    secure=True
-)
-
-# Added
 
 MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
@@ -106,8 +94,6 @@ MIDDLEWARE = [
 INTERNAL_IPS = ['127.0.0.1']
 
 ROOT_URLCONF = 'restaurant.urls'
-
-
 
 WSGI_APPLICATION = 'restaurant.wsgi.application'
 
@@ -153,7 +139,11 @@ AUTHENTICATION = {
     'LOGIN_URL': 'login/', 
 }
 
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',   
 ]
+
+# import bookatable.patches
+

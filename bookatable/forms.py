@@ -3,11 +3,16 @@
 # Notes: Below code is based on above references and modifed for the project
 
 from django import forms
-from .models import Reservation
+from bookatable.models import Reservation
 
-
-class ReservationForm(forms.ModelForm):
-    class Meta:
-        model = Reservation
-        fields = ['name', 'email', 'phone_number', 'date', 'time',
-                  'number_of_guests', 'occasion', 'agreed_to_terms']
+class ReservationModelForm(forms.ModelForm):
+  class Meta:
+    model = Reservation
+    fields = ['user', 'name', 'email', 'phone_number', 'date', 'time', 
+              'number_of_guests', 'occasion', 'agreed_to_terms']
+    
+class CreateReservationForm(forms.ModelForm):
+  class Meta:
+    model = Reservation
+    fields = ['user', 'name', 'email', 'phone_number', 'date', 'time', 
+              'number_of_guests', 'occasion', 'agreed_to_terms']    

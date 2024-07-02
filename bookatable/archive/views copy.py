@@ -42,18 +42,34 @@ def list_reservation(request):
     return render(request, 'list_reservation.html')
 
 
+def read_reservation(request):
+    return render(request, 'read_reservation.html')
+
+
 def view_reservation(request):
     return render(request, 'view_reservation.html')
+
+
+def create_booking(request):
+    return render(request, 'create_booking.html')
+
+
+def delete_booking(request):
+    return render(request, 'delete_booking.html')
 
 
 def reservation_success(request):
     return render(request, 'reservation_success.html')
 
 
+def reservation_form(request):
+    return render(request, 'reservation_form.html')
+
+
 def test_crud(request):
     return render(request, 'test_crud.html')
-   
- 
+
+    
 def login_required_message(request):
     context = {}
     if not request.user.is_authenticated:
@@ -68,31 +84,44 @@ def default_request(request):
 def reservation_form(request):
         return render(request, 'reservation_form.html')
     
-        
+         
+# def my_reservations(request):
+#     if not request.user.is_authenticated:
+#         return login_required_message(request)
+#     reservations = Reservation.objects.filter(user=request.user)
+#     context = {'reservations': reservations}
+#     return render(request, 'my_reservations.html', context)
+
 def my_reservations(request):
-    if not request.user.is_authenticated:
-        return redirect('my_reservations')
+     if request.method == 'POST':
+         user = request.user
+         user.profile.name = request.POST['name']
+         user.profile.save()
+         messages.success(request, 'User information updated successfully!')
+         return redirect('my_reservations')
  
-    
+     reservations = Reservation.objects.filter(user=request.user)
+     context = {'reservations': reservations}
+     return render(request, 'my_reservations.html', context)
+
 def agreed_to_terms(request):
     return render(request, 'agreed_to_terms.html')
-
-def create_reservation(request):
-    return render(request, 'create_reservation.html')
+ 
     
-# Reference in modified parts below: https://github.com/flatplanet/Django-CRM      
-@login_required
-def my_reservations(request):
-    if request.method == 'POST':
-        user = request.user
-        user.profile.name = request.POST['name']
-        user.profile.save()
-        messages.success(request, 'User information updated successfully!')
-        return redirect('my_reservations')
-
-    reservations = Reservation.objects.filter(user=request.user)
-    context = {'reservations': reservations}
-    return render(request, 'my_reservations.html', context)
+# Reference in modified parts below: https://github.com/flatplanet/Django-CRM   
+   
+# @login_required
+# def my_reservations(request):
+#     if request.method == 'POST':
+#         user = request.user
+#         user.profile.name = request.POST['name']
+#         user.profile.save()
+#         messages.success(request, 'User information updated successfully!')
+#         return redirect('my_reservations')
+# 
+#     reservations = Reservation.objects.filter(user=request.user)
+#     context = {'reservations': reservations}
+#     return render(request, 'my_reservations.html', context)
 
 
 @login_required
@@ -121,7 +150,7 @@ def view_reservation(request, reservation_id):
         reservation = Reservation.objects.get(pk=reservation_id, 
                                               user=request.user)
         context = {'reservation': reservation}
-        return render(request, 'read_reservation.html', context)
+        return render(request, 'view_reservation.html', context)
     except Reservation.DoesNotExist:
         messages.error(request, 'Reservation not found!')
         return redirect('my_reservations')

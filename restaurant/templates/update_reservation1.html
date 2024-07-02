@@ -60,7 +60,7 @@
           <div class="col-md-6 mb-3">
             <label for="date" class="form-label">Date</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
               id="date"
               name="date"
@@ -69,7 +69,7 @@
           <div class="col-md-6 mb-3">
             <label for="time" class="form-label">Time</label>
             <input
-              type="text"
+              type="time"
               class="form-control"
               id="time"
               name="time"
@@ -95,14 +95,13 @@
           </div>
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Save Changes</button>
-            
           </div>
         </form>
       </div>
     </div>
-  
+
     {% else %}
-    
+
     <p>Reservation not found.</p>
 
     {% endif %} {% endblock %}
