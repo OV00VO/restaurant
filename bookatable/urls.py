@@ -44,7 +44,7 @@ urlpatterns = [
 
     path('update_user_info/', views.update_user_info, name='update_user_info'),
     path('reservation_form/', views.ReservationForm, name='reservation_form'),
-    path('terms/', views.agreed_to_terms, name='agreed_to_terms'),
+    path('agreed_to_terms/', views.agreed_to_terms, name='agreed_to_terms'),
     
     path('test_crud/', views.test_crud, name='test_crud'),
     
