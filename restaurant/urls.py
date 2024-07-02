@@ -5,7 +5,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from bookatable import views
+from bookatable import views_org
 
 
 urlpatterns = [
@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('', include('bookatable.urls')),
     
-    path('create_reservation/create_reservation', views.create_reservation, name='create_reservation'),
+    path('create_reservation/create_reservation', views_org.create_reservation, name='create_reservation'),
 
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
 ]

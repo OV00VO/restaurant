@@ -70,9 +70,7 @@
     </tbody>
   </table>
   <h2>Create a New Reservation</h2>
-  <form action="{% url 'create_reservation' %}" method="post">
-    {% csrf_token %}  <button type="submit" class="btn btn-primary">Create Reservation</button>
-  </form>
+  <a href="{% url 'create_booking' %}" class="btn btn-primary">Create Booking</a>
 </main>
 {% else %}
 
