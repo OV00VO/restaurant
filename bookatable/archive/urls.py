@@ -3,7 +3,7 @@
 # Notes: Below code is modified and based on the above references.
 
 from django.urls import path, include
-from . import views
+from ...restaurant.templates import views
 from django.contrib.auth import views as auth_views
 from .views import create_reservation, create_booking, read_reservation, view_reservation, update_reservation, delete_reservation 
 
