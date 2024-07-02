@@ -42,8 +42,20 @@ def list_reservation(request):
     return render(request, 'list_reservation.html')
 
 
+def read_reservation(request):
+    return render(request, 'read_reservation.html')
+
+
 def view_reservation(request):
     return render(request, 'view_reservation.html')
+
+
+def create_booking(request):
+    return render(request, 'create_booking.html')
+
+
+def delete_booking(request):
+    return render(request, 'delete_booking.html')
 
 
 def reservation_success(request):
@@ -52,8 +64,8 @@ def reservation_success(request):
 
 def test_crud(request):
     return render(request, 'test_crud.html')
-   
- 
+
+    
 def login_required_message(request):
     context = {}
     if not request.user.is_authenticated:
@@ -68,17 +80,22 @@ def default_request(request):
 def reservation_form(request):
         return render(request, 'reservation_form.html')
     
-        
+         
 def my_reservations(request):
     if not request.user.is_authenticated:
-        return redirect('my_reservations')
- 
-    
+        return login_required_message(request)
+    reservations = Reservation.objects.filter(user=request.user)
+    context = {'reservations': reservations}
+    return render(request, 'my_reservations.html', context)
+
+
 def agreed_to_terms(request):
     return render(request, 'agreed_to_terms.html')
  
     
-# Reference in modified parts below: https://github.com/flatplanet/Django-CRM      
+# Reference in modified parts below: https://github.com/flatplanet/Django-CRM   
+
+   
 @login_required
 def my_reservations(request):
     if request.method == 'POST':
