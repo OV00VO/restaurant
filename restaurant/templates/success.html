@@ -1,3 +1,8 @@
+<!-- Reference: Code Institute Curriculum and Code Star Project -->
+<!-- Reference: https://github.com/flatplanet/Django-CRM -->
+<!-- Reference: https://getbootstrap.com -->
+<!-- Notes: Below code is based on the above references and modifed for the project -->
+
 {% extends 'base.html' %} 
 {% block content %} 
 {% if user.is_authenticated %}
@@ -10,7 +15,7 @@
     <h2>Logged in as: <b>{{ user.username }}</b></h2>
 {% endif %}
 
-<h3>Operation Created Successfully!</h3>
+<h3>The Operation was Created Successfully!</h3>
 
 <h2>Reservation Details</h2>
 <table class="table table-striped">

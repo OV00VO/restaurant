@@ -14,18 +14,18 @@
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
 
 {% extends "base.html" %}{% block content %}
-<section
-class="d-flex justify-content-center align-items-center min-vh-100 hero"
-
-  class="bg-image overlay"
-  style="
-    background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero3_ltygo9); opacity: 0,9;
-  "
-></div>
+<section class="d-flex justify-content-center align-items-center min-vh-100 hero bg-image overlay"
+    style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero3_ltygo9);
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-position: center center;
+           opacity: 0.9;">
+</section> 
+</div>
   <div class="container position-absolute top-50 start-50 translate-middle text-center">
     <h2><b>About Us at Restaurant Fine Dine</b></h2>
     <p><b>Below you can read more about our Restaurant Fine Dine Experience</b></p>
-    <a href="/reservation_form/" class="btn btn-primary"
+    <a href="{% url 'request_form' %}" class="btn btn-primary"
         >Make a Reservation (Login to Book a Table or Request a Table)</a>
         <div class="text-box" style="
         position: absolute;
@@ -87,6 +87,10 @@ class="d-flex justify-content-center align-items-center min-vh-100 hero"
 <h3>Experience the Difference</h3>
 <p>At Restaurant Fine Dine, we are committed to providing an exceptional experience that exceeds expectations. Our attentive staff is dedicated to ensuring your comfort and satisfaction from the moment you arrive. We invite you to explore our diverse offerings and create lasting memories at our place.</p>
 </section>
+<br>
+<br>
+<br>
+<br>
 <br>
 {% endblock %}
 </body>

@@ -1,0 +1,47 @@
+<!-- Reference: Code Institute Curriculum and Code Star Project -->
+<!-- Reference: https://github.com/flatplanet/Django-CRM -->
+<!-- Reference: https://getbootstrap.com -->
+<!-- Notes: Below code is based on the above references and modifed for the project -->
+
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+  <title>Restaurant - Fine Dine - Reservation Form</title>
+  <meta name="description" content="Request or Book a Table and Experience exquisite dining at our fine-dine restaurant. Book your table today and savor delicious food in an elegant ambiance.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <section id="reservations">
+        <br>
+        <h2>This form is for reservation requests only at Restaurant Fine Dine.</h2>
+        <p><b>Please sign in for faster confirmation or proceed to request a table below.</b></p>
+        <p>We recommend making a reservation to secure your desired table, especially for evenings and weekends.</p>
+
+        <form id="reservation-form" method="POST" action="https://formdump.codeinstitute.net" onsubmit="openPopup(event);">
+          {% csrf_token %}
+          {{ form|crispy }}
+
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">Request a Table</button>
+          </div>
+        </form>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}
+</body>
+</html>

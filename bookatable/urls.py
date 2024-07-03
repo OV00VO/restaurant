@@ -5,7 +5,7 @@
 from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import update_reservation, create_reservation, success_view, ReservationForm
+from .views import update_reservation, create_reservation, success_view, request_form
 
 urlpatterns = [
 
@@ -39,18 +39,22 @@ urlpatterns = [
     path('my_reservations/', views.my_reservations, name='my_reservations'),
 
     path('update_user_info/', views.update_user_info, name='update_user_info'),
-    path('reservation_form/', views.reservation_form, name='reservation_form'),
+
     path('agreed_to_terms/', views.agreed_to_terms, name='agreed_to_terms'),
     
     path('error/', views.error, name='error'),
     
     path('test_crud/', views.test_crud, name='test_crud'),
     
-    path('default_request/', views.default_request, name='default_request'), 
-    
     path('__debug__/', include('debug_toolbar.urls')),
     
     path('robots.txt', views.home, name='home'),
     
     path('favico.ico', views.home, name='home'),
+    
+    path('request_form', request_form, name='request_form'),
+    
+    path('404', views.home, name='404'),
+    
+    path('500', views.home, name='500'),
 ]

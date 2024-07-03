@@ -48,7 +48,7 @@
           title="Create Reservation"
           onclick="return confirm('Are you sure you want to Create a New reservation?')"
         >
-          <i class="fas fa-trash-alt"></i>
+          <i class="fas fa-plus"></i>
         </a>
           <a
             href="{% url 'view_reservation' reservation.id %}"
@@ -82,7 +82,7 @@
   </tbody>
       {% endfor %}
   </table>
-  <div class="centered-button">
+  <div class="text-center mt-3">
     <button type="button" class="btn btn-sm btn-success" title="Create a New Reservation" onclick="if (confirm('Are you sure you want to create a new reservation?')) { window.location.href='{% url 'create_reservation' %}'; }">
       <i class="fas fa-trash-alt"></i> Create a New Reservation
     </button>

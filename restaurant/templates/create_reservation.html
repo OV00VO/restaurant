@@ -19,7 +19,7 @@
 <br>
 <br>
 <section class="container py-5">
-<h2>Welcome back, {{ user.username }}!</h2>
+<h2>Welcome, {{ user.username }}!</h2>
 {% endif %}
 
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
@@ -29,11 +29,16 @@
   {% csrf_token %}
   {{ form|crispy }}
   <div class="row">
-    <div class="col-md-6 mb-3">
+    <div class="text-center mt-3">
   <div class="col-12">
     <button type="submit" class="btn btn-primary">Create Reservation</button>
   </div>
 </form>
+<br>
+<br>
+<br>
+<br>
+<br>
 </section>
 {% endblock %}
 </body>

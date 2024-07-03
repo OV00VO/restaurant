@@ -13,13 +13,17 @@
 
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
 {% extends "base.html" %}{% block content %}
-
-<section class="d-flex justify-content-center align-items-center min-vh-100 hero"
-class="bg-image overlay" style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero4_mdavxv); opacity: 0,9;"></div>
-  <div class="container position-absolute top-50 start-50 translate-middle text-center">
+<section class="d-flex justify-content-center align-items-center min-vh-100 hero bg-image overlay"
+    style="background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero4_mdavxv);
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-position: center center;
+           opacity: 0.9;">
+</section>
+<div class="container position-absolute top-50 start-50 translate-middle text-center">
     <h2><b>Contact Us at Restaurant Fine Dine</b></h2>
     <p><b>Below you can find about more how you can contact at Restaurant Fine Dine</b></p>
-    <a href="/reservation_form/" class="btn btn-primary"
+    <a href="{% url 'request_form' %}" class="btn btn-primary"
         >Make a Reservation (Login to Book a Table or Request a Table)</a>
         <div class="text-box" style="
         position: absolute;
@@ -37,7 +41,7 @@ class="bg-image overlay" style="background-image: url(https://res.cloudinary.com
 <section class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <h2><i class="fa-solid fa-envelope fa-bounce"></i> Contact us at Restaurant Fine Dine</h2>
+      <h2><i class="fas fa-address-book"></i> Contact us at Restaurant Fine Dine</h2>
       <form id="contact-form" method="POST" action="https://formdump.codeinstitute.net" target="_blank">
         <div class="mb-3">
           <label for="first_name" class="form-label">First Name</label>
@@ -55,7 +59,13 @@ class="bg-image overlay" style="background-image: url(https://res.cloudinary.com
           <label for="phone_number" class="form-label">Phone number</label>
           <input type="tel" name="phone_preference" id="phone_number" class="form-control">
         </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <input type="text" name="message" id="phone_number" class="form-control">
+        </div>
+        <div class="text-center mt-3">
         <button type="submit" class="btn btn-primary">Contact us Now!</button>
+        </div>
       </form>
     </div>
   </div>
@@ -139,5 +149,9 @@ class="bg-image overlay" style="background-image: url(https://res.cloudinary.com
       </p>
       <p><i class="fas fa-phone"></i> (0200) restaurant-fine-dine</p>
       <p><i class="fas fa-envelope"></i> info@restaurantfinedine.com</p>
-    </div></div></section>
+    </div></div><br>
+    <br>
+    <br>
+    <br>
+    <br></section>
   {% endblock %}

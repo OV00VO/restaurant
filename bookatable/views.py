@@ -12,7 +12,7 @@ from django import forms
 from bookatable.forms import ReservationModelForm
 from .forms import ReservationModelForm
 from django.conf import settings
-from .forms import CreateReservationForm, UpdateReservationForm, ReservationForm
+from .forms import CreateReservationForm, UpdateReservationForm, RequestForm
 
 
 def home(request):
@@ -42,10 +42,6 @@ def logout(request):
     return render(request, 'logout.html')
 
 
-def list_reservation(request):
-    return render(request, 'list_reservation.html')
-
-
 def reservation_success(request):
     return render(request, 'reservation_success.html')
 
@@ -59,14 +55,6 @@ def login_required_message(request):
     if not request.user.is_authenticated:
         context['login_message'] = "Please login to make a reservation"
     return context   
-
-
-def default_request(request):
-        return render(request, 'default_request.html')
-    
-    
-def reservation_form(request):
-        return render(request, 'reservation_form.html')
     
         
 def my_reservations(request):
@@ -93,32 +81,15 @@ def confirmation_view(request, pk):
     context = {'reservation': reservation}
     return render(request, 'reservation_confirmation.html', context)
 
-def ReservationForm(request):
+def request_form(request):
     if request.method == 'POST':
-        form = ReservationForm(request.POST)
+        form = RequestForm(request.POST)
         if form.is_valid():
-            contact_name = form.cleaned_data['name']
-            contact_phone = form.cleaned_data['phone_number']
-            reservation_date = form.cleaned_data['date']
-            reservation_time = form.cleaned_data['time']
-            num_guests = form.cleaned_data['number_of_guests']
-            occasion = form.cleaned_data.get('occasion', '')
-
-            context = {
-                'contact_name': contact_name,
-                'contact_phone': contact_phone,
-                'reservation_date': reservation_date,
-                'reservation_time': reservation_time,
-                'num_guests': num_guests,
-                'occasion': occasion,
-            }
-
-            return render(request, 'success.html', context)
+            pass
     else:
-        form = ReservationForm()
+        form = RequestForm()
 
-    return render(request, 'reservation_form.html', {'form': form})
-    
+    return render(request, 'request_form.html', {'form': form})
     
 # Reference in modified parts below: https://github.com/flatplanet/Django-CRM      
 @login_required

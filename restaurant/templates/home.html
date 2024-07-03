@@ -1,3 +1,8 @@
+<!-- Reference: Code Institute Curriculum and Code Star Project -->
+<!-- Reference: https://github.com/flatplanet/Django-CRM -->
+<!-- Reference: https://getbootstrap.com -->
+<!-- Notes: Below code is based on the above references and modifed for the project -->
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
 <head>
@@ -9,16 +14,13 @@
 </head>
 <body>
     {% extends 'base.html' %}  {% block content %}
-
-    <section
-    class="d-flex justify-content-center align-items-center min-vh-100 hero"
-      class="bg-image overlay"
-      style="
-        background-image: url(https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero1_eaqdyk);
-        opacity: 0,9;
-      "
-    ></div>
-  </section>
+  <section class="d-flex justify-content-center align-items-center min-vh-100 hero bg-image overlay"
+    style="background-image: url('https://res.cloudinary.com/dpp16gilv/image/upload/v1711030488/hero/hero1_eaqdyk');
+           background-repeat: no-repeat;
+           background-size: cover;
+           background-position: center center;
+           opacity: 0.9;">
+</section> 
   <div class="container position-absolute top-50 start-50 translate-middle text-center">
     <h2><b>Welcome to Restaurant Fine Dine</b></h2>
     <p>
@@ -26,7 +28,7 @@
         Experience our delicious food and beverages in a vibrant atmosphere, find more information below!
       </b>
     </p>
-    <a href="/reservation_form/" class="btn btn-primary"
+    <a href="{% url 'request_form' %}" class="btn btn-primary"
       >Make a Reservation (Login to Book a Table or Request a Table)</a
     >
     <div class="text-box" style="
@@ -72,6 +74,11 @@
           <a href="menu/#cocktail" class="btn btn-primary">See Our Cocktail List</a>
         </div>
       </div> 
+      <br>
+<br>
+<br>
+<br>
+<br>
     </section>
 <br>
   {% endblock %}
