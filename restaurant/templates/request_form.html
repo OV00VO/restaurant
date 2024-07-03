@@ -22,15 +22,20 @@
       <section id="reservations">
         <br>
         <h2>This form is for reservation requests only at Restaurant Fine Dine.</h2>
-        <p><b>Please sign in for faster confirmation or proceed to request a table below.</b></p>
-        <p>We recommend making a reservation to secure your desired table, especially for evenings and weekends.</p>
+        <p><b>Please Sign In/Login for faster confirmation or proceed to request a table below.</b></p>
+        <div class="text-center mt-3">
+        <a href="/account/login/" class="btn btn-outline-primary">Please Login for Administrations of your Reservations.</a></div><br>
+        <p>We recommend making a reservation by Signing In / Logging In, to secure your desired table, especially for evenings and weekends.</p>
 
         <form id="reservation-form" method="POST" action="https://formdump.codeinstitute.net" onsubmit="openPopup(event);">
           {% csrf_token %}
           {{ form|crispy }}
 
           <div class="text-center mt-3">
-            <button type="submit" class="btn btn-primary">Request a Table</button>
+            <button type="submit" class="btn btn-primary">Request a Table - Answer within 48h</button>
+          </div>
+          <div class="text-center mt-3">
+            <a href="/account/login/" class="btn btn-outline-primary">Login for faster Confirmation and Administration</a>
           </div>
         </form>
         <br>
