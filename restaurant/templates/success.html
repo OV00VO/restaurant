@@ -1,0 +1,56 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% if user.is_authenticated %}
+{% load crispy_forms_tags %}
+<br>
+<br>
+<br>
+<br>
+<section class="container py-5">
+    <h2>Logged in as: <b>{{ user.username }}</b></h2>
+{% endif %}
+
+<h3>Operation Created Successfully!</h3>
+
+<h2>Reservation Details</h2>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th>Name:</th>
+            <td>{{ reservation.user }}</td>
+        </tr>
+        <tr>
+            <th>E-mail:</th>
+            <td>{{ reservation.email }}</td>
+        </tr>
+        <tr>
+            <th>Phone:</th>
+            <td>{{ reservation.phone_number }}</td>
+        </tr>
+        <tr>
+            <th>Date:</th>
+            <td>{{ reservation.date }}</td>
+        </tr>
+        <tr>
+            <th>Time:</th>
+            <td>{{ reservation.time }}</td>
+        </tr>
+        <tr>
+            <th>Guests:</th>
+            <td>{{ reservation.number_of_guests }}</td>
+        </tr>
+        <tr>
+            <th>Occasion:</th>
+            <td>{{ reservation.occasion }}</td>
+        </tr>
+        <tr>
+            <th>Agreed to Terms:</th>
+            <td>{{ reservation.agreed_to_terms }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{% url 'my_reservations' %}"
+    class="btn btn-success"
+    >Back to Your Reservations</a>
+</section>
+{% endblock %}

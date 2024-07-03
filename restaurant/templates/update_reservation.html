@@ -23,6 +23,7 @@
   </head>
   <body>
     {% extends 'base.html' %} {% block content %}
+    {% load crispy_forms_tags %}
     <br>
     <br>
     <br>
@@ -30,81 +31,29 @@
     <br>
     <div class="container">
       <div class="col-md-6 mb-6">
-        <h2>Update Your Current Reservation {{ user.username }}</h2>
-
+        <h2>Reservation Update for User:</h2><h3>{{ user.username }}</h3> 
+        <p>Current information for the booking name: <b>{{ reservation.name }}</b>, with ID no: <b>{{ reservation.id }}</b></p> 
         {% if reservation %}
-
         <form
           method="POST"
           action="{% url 'update_reservation' reservation.id %}">
           {% csrf_token %}
-          <br>
-          <div class="col-md-6 mb-3">
-            <label for="phone_number" class="form-label">Phone number</label>
-            <input
-              type="phone_number"
-              class="form-control"
-              id="phone_number"
-              name="phone_number"
-              value="{{ reservation.phone_number }}">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              name="email"
-              value="{{ reservation.email }}">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input
-              type="text"
-              class="form-control"
-              id="date"
-              name="date"
-              value="{{ reservation.date }}">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="time" class="form-label">Time</label>
-            <input
-              type="text"
-              class="form-control"
-              id="time"
-              name="time"
-              value="{{ reservation.time }}">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="number_of_guests" class="form-label">Guests</label>
-            <input
-              type="number_of_guests"
-              class="form-control"
-              id="number_of_guests"
-              name="number_of_guests"
-              value="{{ reservation.number_of_guests }}">
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="occasion" class="form-label">Occasion</label>
-            <input
-              type="occasion"
-              class="form-control"
-              id="occasion"
-              name="occasion"
-              value="{{ reservation.occasion }}">
-          </div>
+          {{ form|crispy }}
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-            
-          </div>
-        </form>
-      </div>
-    </div>
-  
+            <button type="submit" class="btn btn-primary">Save Changes</button> <a href="{% url 'my_reservations' %}"
+            class="btn btn-success"
+            >Back to Your Reservations</a>
+        </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
     {% else %}
-    
     <p>Reservation not found.</p>
-
-    {% endif %} {% endblock %}
+   
+    {% endif %} 
+    {% endblock %}
   </body>
 </html>

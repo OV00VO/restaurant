@@ -33,9 +33,14 @@
         <table class="table table-striped">
           <tbody>
             <tr>
-              <th>Name:</th>
+              <th>User:</th>
               <td>{{ reservation.user }}</td>
             </tr>
+            <tr>
+              <th>Name:</th>
+              <td>{{ reservation.name }}</td>
+            </tr>
+            <tr>
             <tr>
               <th>E-mail:</th>
               <td>{{ reservation.email }}</td>
@@ -73,6 +78,8 @@
     <a href="{% url 'update_reservation' reservation.id %}"
     class="btn btn-warning"
     >Edit Reservation</a
-  > </div></div>
+  > <a href="{% url 'my_reservations' %}"
+  class="btn btn-success"
+  >Back to Your Reservations</a></div></div>
   </main>
 {% endblock %}

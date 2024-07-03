@@ -10,12 +10,10 @@
 
 import os
 import environ
-# import django
 from dotenv import load_dotenv
 import dj_database_url
 from pathlib import Path
 import secrets
-# django.setup()
 load_dotenv()
 
 from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT
@@ -71,9 +69,12 @@ INSTALLED_APPS = [
     'bookatable',
     'pytest',
     'debug_toolbar',
-#   'django',
-#   'SignupForm',
+    'crispy_forms',
+    'crispy_bootstrap5'
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
@@ -144,6 +145,4 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',   
 ]
-
-# import bookatable.patches
 

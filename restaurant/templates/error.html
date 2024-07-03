@@ -1,0 +1,24 @@
+
+<!-- Reference: Code Institute Curriculum and Code Star Project -->
+<!-- Reference: https://github.com/flatplanet/Django-CRM -->
+<!-- Reference: https://getbootstrap.com -->
+<!-- Notes: Below code is based on the above references and modifed for the project -->
+
+<!-- Reference in modified parts below: Code Institute Curriculum and Code Star Project -->
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+<head>
+  <title>Restaurant - Fine Dine - Success</title>
+  <meta name="description" content="Secure your table at our fine-dining restaurant! Book your reservation online quickly and easily. Enjoy an unforgettable culinary experience.">
+</head>
+
+<body>
+
+{% extends 'base.html' %} {% block content %} 
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="message {{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %} {% endblock %}

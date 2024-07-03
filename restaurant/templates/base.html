@@ -9,10 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Restaurant - Fine Dine - Base</title>
   <meta name="description" content="Secure your table at our fine-dining restaurant! Book your reservation online quickly and easily. Enjoy an unforgettable culinary experience.">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5gI5a3fe1d5m8JdPab5VnD2w5Gl0DlBJ5ME" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mXzcxMeD6os0xZ/X4xF30gI6hKlFE5rfB1ohNmvMG9ZosUapQVve0uTzbrYcDkgAUdfZLPov7lzBqu8A2PIvXA==" crossorigin="anonymous" />
+</head>
 </head>
 
 {% load static %}
+{% load crispy_forms_tags %}
 
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
     {% include 'navbar.html' %}
@@ -23,8 +26,8 @@
       {% endblock%}
       {% include 'footer.html' %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-YWznSfwjQv1dWjWNgQFgkgzPeVXeZP5A8VBvxlHzXnCHQ/ZwTpWTV/mW25BBMvxqqNFTsTE37OcBBXL0adiu0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
-     
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-G1qXf+gpLR3uBNOoU2VwplVGI9zDd1GuSu7rBrJD9v/+NbbVdTDbE7uKsw4ZKqZU" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-rFW8rTJ+5asxl17MeRg5y/OyRu3KQy3P68bNdo9FQEYJ9w9TqCNVeCIfBMLb5h4h6ovwzB7IQjxJliI52gnyjg==" crossorigin="anonymous"></script>
   </body>
 </html>

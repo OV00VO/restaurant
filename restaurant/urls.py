@@ -15,8 +15,6 @@ urlpatterns = [
     path('account/', include('allauth.urls')),
 
     path('', include('bookatable.urls')),
-    
-    # path('create_reservation/create_reservation', views.create_reservation, name='create_reservation'),
 
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
 ]
