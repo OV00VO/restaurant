@@ -10,7 +10,7 @@ from pathlib import Path
 import secrets
 load_dotenv()
 
-from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT
+from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT, DB_SSL
 
 DEBUG = False
 
@@ -45,6 +45,7 @@ DATABASES = {
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
         'PORT' : DB_PORT,
+        'sslmode': DB_SSL,  
     }
 }
 ALLOWED_HOSTS = ALLOWED_HOSTS
@@ -86,7 +87,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-INTERNAL_IPS = ['127.0.0.1']
+INTERNAL_IPS = ['127.0.0.1', '34.105.32.159']
 
 ROOT_URLCONF = 'restaurant.urls'
 

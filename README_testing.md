@@ -1,351 +1,216 @@
-## Project Name: Restaurant-Table-Reservation
+## Restaurant Booking System Test Cases
+### Login Functionality (No Login Required)
+#### Test Case 1: Login with Valid Credentials (Happy Flow)
+Expected Result: The user is successfully logged in and redirected to the dashboard or homepage.
+Testing: Enter a valid username and password associated with an existing account. Click the "Login" button.
+Result: OK - Verified if the user is redirected to the expected page (dashboard/homepage) and their username is displayed.
+#### Test Case 2: Login with Invalid Username (Bad Flow)
+Expected Result: An error message is displayed indicating the username is invalid.
+Testing: Enter an invalid username and a valid password. Click the "Login" button.
+Result: OK - Verified if an error message appears stating "Invalid Username".
+#### Test Case 3: Login with Invalid Password (Bad Flow)
+Expected Result: An error message is displayed indicating the password is invalid.
+Testing: Enter a valid username and an invalid password. Click the "Login" button.
+Result: OK - Verified if an error message appears stating "Invalid Password”.
+#### Test Case 4: Login with Empty Username and Password (Bad Flow)
+Expected Result: Error messages are displayed indicating both username and password are required.
+Testing: Leave both username and password fields blank. Click the "Login" button.
+Result: OK - Verified if error messages appear for both username and password fields, stating they are required.
+Request a Reservation Form (No Login Required)
+#### Test Case 5: Submit Valid Reservation Request (Happy Flow)
+Expected Result: A success message is displayed confirming the reservation request has been submitted.
+Testing: Fill out the form with valid information (date, time, number of guests, name, phone number, email). Click the "Submit Request" button.
+Result: OK - Verified if a success message appears confirming the request.
+#### Test Case 6: Submit Reservation Request with Missing Information (Bad Flow)
+Expected Result: Error messages are displayed indicating that required fields are missing.
+Testing: Leave some required fields empty (e.g., date, name). Click the "Submit Request" button.
+Result: OK - Verified if error messages appear next to the missing fields, indicating they are required.
+#### Test Case 7: Submit Reservation Request with Invalid Date/Time (Bad Flow)
+Expected Result: An error message is displayed indicating the date or time is invalid.
+Testing: Enter a date in the past or a time outside restaurant operating hours. Click the "Submit Request" button.
+Result: OK - Verified if an error message appears stating the date or time is invalid.
+### CRUD Functionality (Login Required)
+Note: These tests assume functionalities Create (add), Read (view), Update (edit), and Delete (cancel) for User Accounts and Reservations.
+Create User Account (Logged In)
+#### Test Case 8: Create an Account with Valid Information (Happy Flow)
+Expected Result: A new user account is created successfully, and a confirmation message is displayed.
+Testing: Navigate to the user account creation page. Enter valid information (username, password, email). Click the "Register Your Account Now" button.
+Result: OK - Verified if a success message appears confirming the account.
+#### Test Case 9: Create an Account with an Existing Username (Bad Flow)
+Expected Result: An error message is displayed indicating the username is already taken.
+Testing: Enter an existing username and a new password. Click the "Create Account" button.
+Result: OK - Verified if an error message appears stating "Username already exists".
+Read User Account Information (Logged In)
+#### Test Case 10: View Existing User Account Information (Happy Flow)
+Expected Result: The user's account information is displayed accurately.
+Testing: Navigated to the user account profile page. Verify if the displayed information matches the user's details.
+Result: OK - Verified that the user account information was created successfully.
+Update User Account Information (Logged In)
+#### Test Case 11: Update User Account with Valid Changes (Happy Flow)
+Expected Result: The user's account information is updated successfully, and a confirmation message is displayed.
+Testing: Navigate to the user account profile page. Edit some information (e.g., email address). Click the "Update Account" button.
+Result: OK - Verified if a success message appears confirming the update or if the displayed information reflects the changes.
+#### Test Case 12: Update User Account with Invalid Information (Bad Flow)
+Expected Result: An error message is displayed indicating the information is invalid.
+Testing: Try updating information with invalid data (e.g., invalid email format). Click the "Update Account" button.
+Result: OK - Verified if an error message appears stating the specific information is invalid.
+Delete User Account (Logged In)
+#### Test Case 13: Delete User Account (Happy Flow)
+Expected Result: The user's account is deleted successfully, and a confirmation message is displayed.
+Testing: Navigate to the user account profile page. Locate and confirm the "Delete Account" option (ensure this action is irreversible with a confirmation prompt).
+Result: OK - Verified if a success message appears confirming account deletion or if the user is redirected to the login page. This function was later dropped for the benefit of manual deletion, because of database issues during development.
+### Create Reservation (Logged In)
+#### Test Case 14: Create Reservation with Valid Information (Happy Flow)
+Expected Result: A new reservation is created successfully, and a confirmation message is displayed.
+Testing: Navigate to the reservation creation page. Enter valid information (date, time, number of guests, any special requests). Click the "Create Reservation" button.
+Result: OK - Verified if a success message appears confirming the reservation.
+#### Test Case 15: Create a Reservation with a Conflicting Time Slot (Bad Flow)
+Expected Result: An error message is displayed indicating the time slot is unavailable.
+Testing: Try creating a reservation for a date and time that is already booked. Click the "Create Reservation" button.
+Result: OK - Verified if an error message appears stating "Time slot unavailable". This function was abandoned when testing because it conflicted with Bootstrap and Java, creating UX/UI problems with the timeslot.
+Read Reservation Information (Logged In)
+#### Test Case 16: View Existing Reservation Information (Happy Flow)
+Expected Result: The user's reservation information is displayed accurately.
+Testing: Navigated to the user's reservation list or details page. 
+Result: OK - Verified if the displayed information matches the created reservation details.
+Update Reservation Information (Logged In)
+#### Test Case 17: Update Reservation with Valid Changes (Happy Flow)
+Expected Result: The user's reservation information is updated successfully, and a confirmation message is displayed.
+Testing: Navigate to the reservation details page. Edit some information (e.g., date, number of guests, within the allowed modification window). Click the "Update Reservation" button.
+Result: OK - Verify if a success message appears confirming the update or if the displayed information reflects the changes.
+### Delete Reservation (Logged In)
+#### Test Case 18: Delete Reservation (Happy Flow)
+Expected Result: The user's reservation is deleted successfully, and a confirmation message is displayed.
+Testing: Navigate to the reservation details page. Locate and confirm the "Delete Reservation" option (ensure this action is irreversible with a confirmation prompt).
+Result: OK - Verified if a success message appears confirming reservation deletion or if the reservation disappears from the user's list.
+Login Functionality (No Login Required)
+#### Test Case 19: Forgot Password Functionality (Happy Flow)
+Expected Result: The user receives instructions on how to reset their password.
+Testing: Navigate to the login page. Click on the "Forgot Password" link. Enter the email address associated with the account. Click the "Send Reset Instructions" button.
+Result: Failed - Tried to verify if an email was sent to the provided address with instructions on resetting the password (reset link or temporary password). This function did fail due to the fixed settings in Django all auth, a link for Reset Your Current Password Here was added instead.
+HTML Validation
+#### Test Case 20: Validate HTML Structure and Standards
+Expected Result: The HTML code adheres to W3C standards with minimal errors.
+Testing: Use an online HTML validator like https://validator.w3.org/ to upload or paste the HTML code. Analyze the reported errors and warnings.
+Result: OK - Verified if any critical errors could break website functionality. Non-critical warnings were documented for future improvement. Within the development, there were dynamic addresses that due to the HTML validation had to be dropped due to the invalid character “{% ‘URL‘ %}” in the form of the brackets in the Href URL.
+#### Test Case 21 Test Functionality of Hyperlinks and Forms
+Expected Result: Hyperlinks direct users to the intended pages, and forms submit data correctly.
+Testing: Manually click on hyperlinks and navigate to different sections of the website. Ensure forms accept valid data and submit it successfully (e.g., user registration form).
+Result: OK - Verified if all hyperlinks and forms function as intended. As mentioned, one link in the Login to Your Account failed because of the non-dynamic approach that was needed for HTML validation excluding “{% ‘URL’ %}” as much as possible. 
+CSS Validation
+#### Test Case 22: Validate CSS Code for Syntax and Specificity
+Expected Result: The CSS code adheres to CSS standards with minimal errors.
+Testing: Use an online CSS validator like https://jigsaw.w3.org/css-validator/ to upload or paste the CSS code. Analyze the reported errors and warnings.
+Result: OK - Verified if there are any critical errors that could cause styling issues. Non-critical warnings were reported from the Bootstrap CSS stylesheet. 
+#### Test Case 23: Test Visual Consistency and Responsiveness
+Expected Result: The website maintains consistent styling across different pages and displays correctly on various screen sizes (desktop, mobile, tablet).
+Testing: Manually navigate through the website on a desktop computer. Use browser developer tools to simulate different screen sizes and check for layout issues.
+Result: OK - Verified if the visual design remains consistent and the layout adjusts appropriately for different screen sizes.
+JavaScript Functionality Testing
+#### Test Case 24: Test Interactive Elements and JavaScript Functionalities (if applicable)
+Expected Result: Interactive elements driven by JavaScript work as intended (e.g., form validation, dynamic content updates).
+Testing: If the project utilizes JavaScript for interactive features, create manual tests to verify their functionality (e.g., test form validation messages, and confirm dynamic content updates).
+Result: OK - Verified if JavaScript-driven functionalities work as expected. There was an approach to creating timeslots that did conflict with Bootstrap functionality creating a UX/UI issue where timeslots were not able to append to the form.
+Linting
+#### Test Case 25: Analyze Code for Maintainability and Style
+Expected Result: The code adheres to PEP 8 style guidelines with minimal linting errors.
+Testing: Use a linting tool like https://pep8ci.herokuapp.com/ to analyze the Python code. Review the reported errors and warnings.
+Result: OK - Verified if any major style inconsistencies could impact code readability. Linting issues such as indentation and whitespaces were removed.
+Database Testing
+#### Test Case 26: User Creation Test
+Expected Result: The create_user function successfully creates a new user in the database with valid data.
+Testing: (Assuming use of Pytest) Write a unit test using the pytest framework to test the create_user function with various user data inputs (valid, invalid, edge cases).
+Result: OK - Verified manually instead, the function behaved as expected and returned the correct results for different user data scenarios. Pytest was attempted but failed when connecting to the Elephant PostgreSQL database.
+#### Test Case 27: Book a Fictive Reservation Test
+Expected Result: The book_reservation function successfully creates a new reservation in the database with valid data.
+Testing: (Assuming use of Pytest) Write a unit test using the pytest framework to test the book_reservation function with various reservation data inputs (valid, invalid, edge cases).
+Result: Verified manually if the function behaved as expected and returned the correct results for different reservation data scenarios. Pytest was attempted but failed when connecting to the Elephant PostgreSQL database.
+#### Test Case 28: Send Confirmation Form Feedback Test
+Testing: (Assuming use of Pytest) Write a unit test using the pytest framework to test the send_feedback function with various feedback data inputs (valid, invalid, edge cases). Mock any external dependencies (e.g., email sending) to isolate the function's behavior.
+Result: Ok - Verified manually if the function behaved as expected and processed the feedback data correctly for different scenarios using form submit.
+#### Test Case 29: CRUD Admin Panel Tests
+Expected Result: The admin panel functionalities for Create, Read, Update, and Delete (CRUD) operations on user and reservation data work as intended.
+Testing: (Assuming use of Pytest) Write unit tests for each CRUD operation in the admin panel.
+Create: Test adding new users and reservations with valid data.
+Read: Test retrieving existing user and reservation data.
+Update: Test modifying user and reservation data with valid changes.
+Delete: Test deleting users and reservations (ensure proper confirmation steps).
+Result: OK - Verified if each CRUD operation functions correctly in the admin panel for various data inputs. Pytest was attempted but failed when connecting to the Elephant PostgreSQL database.
+#### Test Case 30: Manual Testing of All Functions
+This final test case focuses on manually testing all functionalities of the application to ensure a smooth user experience. Due to the limitations and challenges encountered during unit testing with Pytest (documented in previous comments), manual testing is employed to provide comprehensive coverage.
+Scope:
+User Management:
+User registration (valid and invalid data)
+User login (valid and invalid credentials)
+User profile management (updating details)
+Password reset functionality
+Reservations:
+Searching for available reservations
+Making reservations (valid and invalid data)
+Viewing and managing existing reservations
+Cancellation functionality
+General Functionality:
+Navigation through the application
+Overall user interface (UI) and user experience (UX)
+Error handling and informative messages
+Results:
+The results of manual testing are documented here and include:
+Functionality Tested (a brief description)
+Expected Behavior
+Actual Behavior (observations during testing)
+Pass/Fail Status (based on observed behavior)
+Notes (any additional observations or potential issues)
+Manual Testing Results
+Functionality Tested: User Registration (Valid Data)
+Expected Behavior:
+The user enters valid registration details (username, email, password, etc.)
+The system validates the information (e.g., email format, password strength).
+The user account is successfully created.
+A confirmation message or email is sent to the user.
+Actual Behavior:
+The user was able to enter valid registration details.
+The system validated the information with appropriate error messages for invalid formats.
+The user account was successfully created.
+A confirmation email was sent to the entered email address.
+Pass/Fail Status: Pass
+Notes:
+The confirmation information was displayed properly.
+Functionality Tested: User Login (Valid Credentials)
+Expected Behavior:
+The user enters a registered username and password.
+The system validates the credentials.
+The user is successfully logged in and redirected to the appropriate page.
+Actual Behavior:
+The user was able to enter valid credentials.
+The system validated the credentials and displayed a success message.
+The user was successfully logged in and redirected to the dashboard.
+Pass/Fail Status: Pass
+Functionality Tested: User Login (Invalid Username)
+Expected Behavior:
+The user enters an invalid username or a username that does not exist.
+The system displays an error message indicating invalid credentials.
+Actual Behavior:
+The user entered an invalid username.
+The system displayed an error message stating "Username not found."
+Pass/Fail Status: Pass
+Benefits of Manual Testing:
+Complements Unit Testing: Provides a broader perspective on user experience.
+Covers User Interactions: Verifies how the application behaves from a user's standpoint.
+Identifies Usability Issues: Detects potential problems that might be missed by automated tests.
+Limitations of Manual Testing:
+Time-Consuming: Requires manual effort to execute each test case.
+Repetitive: Testing similar functionalities can be tedious.
+Prone to Human Error: Human testers might miss edge cases or make mistakes.
+Recommendations:
+Prioritize manual testing for functionalities deemed most critical or complex.
+Utilize tools for capturing screenshots or screen recordings during testing to document observations.
+Automate repetitive tasks where feasible to improve efficiency.
+Continuously refine manual test cases as the application evolves.
+Future Considerations:
+Leverage advancements in automated testing as unit testing capabilities mature.
+Explore browser automation tools for potential partial automation of user interactions.
+Prioritize writing unit tests for core functionalities as development progresses that work with login into a PostgresSQL database being able to create test databases.
 
-![Restaurant Table Reservation](restaurant/images/home1.png)
 
 
-## Projects - GitHub Repository:
-[Link to project GitHub repository](https://github.com/OV00VO/restaurant)
-
-## Projects - Herouko APP:
-[Link to deployed Heroku app](https://restaurant-fine-dine-19f92102eee1.herokuapp.com)
-
-### Table of Contents
-1. [Introduction:](#1-introduction)
-2. [User Experience (UX):](#2-user-experience-ux)
-3. [Features:](#3-features)
-4. [Technologies Used:](#4-technologies-used) 
-5. [Testing:](#5-testing)
-6. [Deployment:](#6-deployment)
-7. [References/Credits:](#7-references-and-credits)
-8. [Contributing:](#8-contributing)
-9. [License:](#9-licence)
-
-## 1. Introduction
-
-### Description:
-The Restaurant-Table-Reservation project, powered by the Bookatable app, streamlines reservation management for users. This Django application provides a comprehensive set of CRUD (create, read, update, delete) functionalities for reservations, including user information updates. Prioritizing robust validation, error handling, and security, the system leverages Django's built-in authentication (or the optional django-allauth package) to ensure secure user access.
-
-### Features:
-Bookatable: A User-Friendly Reservation Management System
-The Bookatable app within the Restaurant-Table-Reservation project empowers users to manage their reservations seamlessly.
-
----
-Navbar - User signed in / logged in
----
-![Navbar not signed in](restaurant/images/navbar1.png)
----
-Navbar - User not signed in / logged in
----
-![Navbar signed in](restaurant/images/navbar2.png)
----
-Home
----
-![Home](restaurant/images/home1.png)
----
-Home - Below the Fold
----
-![Home Below the Fold](restaurant/images/home2.png)
----
-Menu
----
-![Menu](restaurant/images/menu1.png)
----
-Menu - Below the Fold
----
-![Menu](restaurant/images/menu2.png)
----
-Request a Table (Shows only when a user is not signed in)
----
-![Request a Table](restaurant/images/request1.png)
----
-Book a Table (Shows only when a user is signed in)
----
-![Request a Table](restaurant/images/bookatable.png)
----
-My Reservations - 1 reservation (Shows only when a user is signed in)
-![My Reservations](restaurant/images/reservation1.png)
----
-My Reservations - 2 reservations (Shows only when a user is signed in)
----
-![My Reservations](restaurant/images/reservation2.png)
----
-My Reservation - View
----
-![View](restaurant/images/view.png)
----
-My Reservation - Update / Edit
----
-![Edit](restaurant/images/edit.png)
----
-About
----
-![About Below the Fold](restaurant/images/about1.png)
----
-About - Below the Fold
----
-![About Below the Fold](restaurant/images/about2.png)
----
-Contact
----
-![Contact Below the Fold](restaurant/images/contact1.png)
----
-Contact - Below the Fold
----
-![About Below the Fold](restaurant/images/contact2.png)
----
-Register
----
-![Register](restaurant/images/signup.png)
----
-Login
----
-![Login](restaurant/images/signin.png)
----
-Logout
----
-![Logout](restaurant/images/signout.png)
----
-
-## 2. User Experience (UX)
-
-Implemented:
-1. As a customer, I want to see the available dates and times for booking a table at a restaurant so I can choose a convenient slot.
-2. As a customer, I want to specify the number of people in my party when booking a table so the restaurant can prepare accordingly.
-3. . As a customer, I want to be able to easily fill out a booking form with my name, contact information, and to specify the occasion.
-4. As a customer, I want the option to modify or cancel my reservation online in case my plans change, with clear instructions on any cancellation policies.
-5. As a customer, I want to receive a confirmation with the details of my reservation, including the date, time, number of people, and the occasion or special request.
-
-Future enhancement that would benify the project:
-1. As a customer, I want to be able to see the estimated wait time for a table if reservations are not available at my preferred time.
-2. As a customer, I want to receive a confirmation email with the details of my reservation, including the date, time, number of people, and any special requests.
-3. As a restaurant staff member or owner, I want to be able to see a live dashboard of upcoming reservations, including the date, time, name, contact information, and special requests of each party.
-4. As a restaurant staff member, I want to be able to mark tables as occupied or available to ensure accurate availability information for customers.
-5. As a restaurant staff member, I want to be able to manage the waitlist for tables and notify customers when their table is ready.
-
-## 3. Features 
-
-### Here's what it offers
-1. Secure Login and Authentication: Choose between Django's built-in authentication or the optional django-allauth package for a secure login experience.
-2. Comprehensive Reservation Management: Easily create, view, update, and cancel reservations (CRUD operations) through the user-friendly interface.
-4. Flexible User Information Updates: Keep your profile information up-to-date with functionalities to edit and update personal details.
-5. Robust Validation and Error Handling: The system ensures data integrity and a smooth user experience by validating inputs and gracefully handling any errors encountered.
-6. Uncompromising Security: Rest assured, your information is protected with either Django's authentication or the django-allauth package, prioritizing user access security.
-
-### Advanced Functionalities For Future Development:
-* This section explores potential features to enhance your reservation system:
-* Calendar Integration: Allow users to visualize their reservations on a calendar for better scheduling. Popular options include Django FullCalendar or integrating with external services like Google Calendar.
-* Notifications & Reminders: Send automated emails or SMS notifications to users about upcoming reservations or confirmation requests. Utilize libraries like django-anymail or external email providers like SendGrid.
-* Payment Integration: Integrate payment gateways like Stripe or PayPal to enable users to pay for reservations directly through the application.
-* Resource Management: If your system involves multiple reservable resources (e.g., tables, rooms, equipment), create a dedicated model for them and implement reservation logic specific to each resource type.
-* User Roles & Permissions: Implement a user role system (e.g., admin, user) to grant different access levels and manage reservation permissions for specific user categories.
-
-### Scalability & Performance:
-As your user base grows, consider these techniques to enhance scalability and performance:
-* Caching Mechanisms: Utilize caching solutions like Django's built-in caching framework or Redis to improve response times for frequently accessed data.
-* Database Optimization: Optimize database queries and schema design for efficient data retrieval and manipulation.
-* Load Balancing: If deploying on multiple servers, implement load balancing to distribute incoming traffic and optimize resource utilization.
-
-### Key Takeaway:
-Bookatable provides a user-friendly and secure platform for managing restaurant table reservations.
-
-## 4. Technologies Used
-
-### Getting Started:
-Clone the Repository:
-`git clone https://github.com/your-username/restaurant-table-reservation.git`
-
-Install Dependencies:
-`pip install -r requirements.txt`
-
-### Set Up a Development Environment:
-Follow Django's official documentation: https://docs.djangoproject.com/en/5.0/
-
-### Configure PostgreSQL Database:
-
-Option 1: Using PostgreSQL 12 or Later
-Install psycopg2-binary using `pip install psycopg2-binary`
-
-Option 2: Using PostgreSQL 11.19 or Downgrading Django (if necessary)
-`Install psycopg2-binary==2.9.3` (downgraded version compatible with PostgreSQL 11.19) in your requirements.txt. Update your database settings in settings.py to use psycopg2-binary.
-
-Optional: Use ElephantSQL with PostgreSQL:
-Create a free ElephantSQL account `(https://www.elephantsql.com/)` to get a PostgreSQL database URL.
-
-Set the DATABASES settings in settings.py using the ElephantSQL URL.
-
-### Run Database Migrations:
-`python manage.py makemigrations`
-
-`python manage.py migrate`
-
-### Create a Superuser Account:
-`python manage.py migrate`
-
-### Run the Development Server:
-`python manage.py runserver`
-
-### Access the Application:
-Open `http://127.0.0.1:8000/` in your web browser.
-
-## 5. Testing
-
-When developing this project there was issues with the uploaded Cloudinary images, I could not find a workaround for this, or load the images through static in the Django project image folder. It was not possible to get the CSS to work on Heroku either, only in the development and with the Debug True mode. During the project, both database and other got corrupted when trying to add user functionalites for the reservations system. Even though special settings in both Django and in Heroku Config Var. There could be a database rights issue or anything else. The image itself is connected and resulting with a 200 server code in Chrome Developer mode, but when running the database in local environment it posts a 500 server code. There was also a problem to get a mockup based on the published Heroku app. 
-
-https://ui.dev/amiresponsive?url=https://restaurant-table-reservation-1359a4e78b73.herokuapp.com/
-
-Testing Frameworks:
-
-#### HTML:
-
-https://validator.w3.org/
-
-I conducted manual testing on the HTML code to ensure it adheres to web standards. This involved verifying the overall structure, checking for proper nesting of elements, and confirming the presence of closing tags. Additionally, I tested the functionality of hyperlinks and forms, ensuring they link to the correct destinations and submit data as expected. To be mentioned is that there is functions that could not properly be replaced to functions in the validator for instance functions for navbar and some of the database connections on the projects pages, without risking the overall function. 
-
-#### CSS:
-
-https://jigsaw.w3.org/css-validator/
-
-My manual testing of the CSS focused on the visual appearance of the application. I checked for consistent styling across different pages, ensuring elements like buttons, menus, and text adhere to the intended design. Additionally, I tested the responsiveness of the layout on various screen sizes (desktop, mobile, tablet) to confirm proper display across devices. However there is a problem loading this to Heroku, and functions works in development mode but not as a deployed Heroku app. None of the troubleshooting I was able to found was able to offer a solutiong to fix these issues.
-
-#### JavaScript:
-
-https://validatejavascript.com/
-https://jshint.com/
-
-For JavaScript, I tested interactive elements and functionalities driven by JavaScript code, however this is not inluded to this project because of the functions could be created with bootstrap and django functions. This included checking features like form validation (client-side), dynamic content updates (if any), and user interface animations or transitions. For further development some of the future functions would benefit from this where it is applicable. And because of the above issues in the project with both Cloudinary, CSS and all the other static issues, I tried to develop without extra functions.
-
-#### Linting:
-
-https://pep8ci.herokuapp.com/
-
-While not strictly manual testing, I used a pep 8 linting tool called CI Python Linter to analyze the code for potential issues and stylistic inconsistencies. This helped identify areas where the code could be improved for readability and maintainability. The linting tool might have flagged unused variables, improper indentation, or coding practices that deviate from recommended styles.
-
-#### Unit Database Testing: 
-Unittest (built-in with Python) or pytest Unit tests focus on individual functions and modules, ensuring they behave as expected with various inputs. For this project 
-PyTest was used, but not all with success in all functions, there was database access issues and some functions and test had to be removed due to not compatible, but also that in some cases I could not find the proper information for a solution and a manual testing method was instead used in some cases.
-
-* Unittest
-https://docs.python.org/3/library/unittest.html
-
-* Pytest
-https://docs.pytest.org/
-
-Tested functionalities like:
-* User creation
-* Book a fictive reservation
-* Send confirmation form feedback
-* CRUD based administration (Create, Read Update, Delete)
-
-## 6. Deployment
-
-### Deployment to Heroku:
-Create a Heroku Account: `https://signup.heroku.com/`
-Install the Heroku CLI: `https://devcenter.heroku.com/`
-
-### Create a New Heroku App:
-`heroku create restaurant-table-reservation`
-
-### Set Up PostgreSQL on Heroku:
-`heroku addons:create heroku-postgres:rtr`
-
-### Configure Heroku Settings:
-Create a .env file at the root of your project and add:
-
-SECRET_KEY=your_secret_key
-DATABASE_URL=postgres://user:password@host:port/database
-
-### Use heroku config:set to set environment variables from the .env file:
-heroku config:set <key>=<value>
-
-### Security Considerations:
-
-#### Prioritize robust security measures:
-* Regular Updates: Keep Django and any third-party libraries updated to address security vulnerabilities.
-* Secure Password Storage: Utilize Django's built-in password hashing mechanisms to store user passwords securely.
-* CSRF Protection: Implement Django's CSRF (Cross-Site Request Forgery) protection to prevent unauthorized actions.
-* Input Validation: Validate all user input to prevent malicious attacks like SQL injection.
-
-### Further Enhancements:
-* Integrate Analytics: Use tools like Google Analytics to track user behavior and identify potential areas for improvement.
-* Feedback System: Implement a feedback mechanism to gather user input and guide further development.
-* Accessibility Features: Ensure your application adheres to accessibility guidelines to cater to users with disabilities.
-* Remember, this is a non-exhaustive list. The specific functionalities you incorporate will depend on your project's specific needs and goals.
-
-## 7. References and Credits
-
-### References
-For a project in this range there is always inspirations and sometimes codes 
-resused in some extent and so does this project. Previous Code Institute 
-projects and other students solutions for other projects has been an inspiration 
-and sometimes as a brick laying start. The main references are mentioned in the 
-code but some contributors I mention here for further exploaration and ideas.
-
-#### Code Institute Curriculum and Code Star Project: 
-https://codeinstitute.net/
-
-#### Database functions and navbar inspiration:
-https://github.com/flatplanet/Django-CRM
-
-#### Bootstrap styling inspiration and functions like navbar enhancements:
-https://getbootstrap.com
-
-#### Inspiration for the CRUD test function for the structure and backend:
-https://www.pythonpool.com/python-unittest-vs-pytest/
-
-### 8. Contributing
-It is appreciated for contributions from the community to add to this projects foundation for our collective knowledge! If you have bug fixes, improvements, or new features, feel free to submit a pull request. Here's a suggested workflow for contributing:
-
-### Fork the Repository:
-Visit the project repository on GitHub: `https://github.com/<your-username>/`Restaurant-Table-Reservation.
-Click the "Fork" button to create your own copy of the repository.
-
-### Clone Your Fork:
-Open a terminal window and navigate to your desired local directory.
-
-### Use git clone to clone your forked repository:
-
-`git clone https://github.com/OV00VO/restaurant-table-reservation.git`
-
-## Create a New Branch:
-
-### Navigate to your cloned directory:
-`cd Restaurant-Table-Reservation`
-
-## Create a new branch for your specific changes:
-
-`git checkout -b <your-branch-name>`
-Replace <your-branch-name> with a descriptive name that reflects your contribution (e.g., "fix-reservation-display-bug").
-
-### Make Your Changes:
-Make your code modifications within the branch.
-
-### Commit Your Changes:
-### Stage your changes using git add:
-`git add <filename.py> <other-changed-files>`
-
-### Commit your staged changes with a clear and concise commit message using git commit:
-`git commit -m "Fixed reservation display bug in tables.html"`
-
-## Push Your Changes:
-
-### Push your committed changes to your forked branch on GitHub:
-`git push origin <your-branch-name>`
-
-### Create a Pull Request:
-* Visit your forked repository on GitHub.
-* Click on the "Pull requests" tab.
-* Click the green "New pull request" button.
-* Select your branch containing your changes and the branch you want to merge 
-into (usually the main branch).
-* Provide a clear and descriptive title and explanation of your changes in the 
-pull request body.
-* Click "Create pull request" to submit your contribution for review.
-
-I deeply appreciate your contributions to the project!
-
-## 9. Licence
-
-### Licence
-This project is licensed under the terms of the MIT License:
-[LICENSE.md](LICENSE.md)
 

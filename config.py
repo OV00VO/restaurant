@@ -4,6 +4,7 @@ DB_NAME = os.environ.get('DB_NAME')
 DB_USER = os.environ.get('DB_USER')
 DB_PASSWORD = os.environ.get('DB_PASSWORD')
 DB_PORT = os.environ.get('DB_PORT')
+DB_SSL = os.environ.get('DB_SSL')
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 

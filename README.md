@@ -107,13 +107,111 @@ Logout
 ---
 
 ## 2. User Experience (UX)
+User Epics:
 
-Implemented:
+#### User Management: This epic would encompass all functionalities related to user accounts, including:
+User registration and login
+User profile management (edit details, preferences)
+Account deletion (optional)
+
+#### Reservation Management: This epic would cover everything related to making and managing reservations:
+Search for available tables based on date, time, and party size
+Make a reservation for a specific date and time
+Modify existing reservations (date, time, party size)
+Cancel a reservation
+
+#### Table Management: This epic would focus on managing the restaurant's tables:
+Create and edit tables (seating capacity, location)
+Mark tables as unavailable (e.g., for maintenance)
+View table layout and availability in real-time (optional)
+
+#### Menu Management: This epic would handle everything related to the restaurant's menu:
+Create and edit menu items (name, description, price, image)
+Categorize menu items (appetizers, main courses, desserts)
+Manage seasonal menus or specials (optional)
+
+#### Review and Rating System: This epic would introduce a system for user reviews and ratings:
+Allow users to leave reviews and ratings after dining
+Display average rating and user reviews on the website/app
+Manage review content and moderation (optional)
+
+#### Waitlist Management: This epic would focus on managing waitlists for reservations:
+Allow users to join a waitlist for full tables
+Notify users when a table becomes available
+Manage waitlist priority and queue (optional)
+
+#### Analytics and Reporting: This epic would cover generating reports and analyzing data:
+View reservation statistics (number of reservations, popular times)
+Analyze customer demographics and preferences (optional)
+Generate reports for business insights (optional)
+
+#### Marketing and Promotions: This epic would address marketing and promotional features:
+Display special offers and promotions on the website/app
+Integrate with email marketing tools (optional)
+Manage social media promotion campaigns (optional)
+
+#### Payment Integration: This epic would involve integrating with a payment system:
+Allow users to pay for reservations online (optional)
+Securely process online payments
+Manage payment refunds (optional)
+
+#### Accessibility Features: This epic would focus on making the reservation system accessible:
+Implement screen reader compatibility
+Support keyboard navigation
+Provide clear and concise user interface elements
+
+#### User Stories:
+
+User Stories for Restaurant Reservation System Epics
+This outlines user epics and user stories categorized by the functionalities they address within the Restaurant Fine Dine project. Epics represent broad areas of functionality, while User Stories detail specific actions that users (customers and business owners) can perform within the system.
+
+Customer-Facing User Stories:
+
+Epic: Reservation Management
+Search with Filters (Expands on existing story 1): As a customer, I want to search for available tables by filtering based on date, time, party size, and location (if applicable) to easily find a table that meets my needs.
+View Table Details: As a customer, I want to see details about available tables, such as location, seating capacity, and accessibility features, before making a reservation.
+Special Requests: As a customer, I want to be able to include special requests (e.g., high chair, window seat) during the reservation process to ensure a comfortable dining experience.
+Join Waitlist (Expands on future enhancement 1): As a customer, I want to join a waitlist for a fully booked time slot and receive a notification when a table becomes available.
+
+Epic: Review and Rating System (Expands on existing epics)
+Leave Review: As a customer, I want to leave a review for the restaurant after dining, including rating the food, service, and ambiance.
+Read Reviews: As a customer, I want to read reviews left by other diners to get insights into the restaurant's offerings and atmosphere.
+
+Epic: Accessibility Features
+Mobile-Friendly Interface: As a customer, I want the reservation system to be accessible and user-friendly on all devices, including smartphones and tablets.
+Business Owner User Stories:
+
+Epic: Reservation Management (Expands on existing story 5 for owner)
+Manage Reservations: As a business owner, I want to view, modify, and cancel reservations through a dedicated management interface.
+
+Epic: Table Management Integration
+Integrate with Table Management System: As a business owner, I want the reservation system to integrate with my existing table management system to ensure accurate availability information.
+
+Epic: Analytics and Reporting
+View Reservation Trends: As a business owner, I want to view reports on reservation trends, including popular times, party sizes, and cancellation rates, to optimize operations.
+Customer Insights (Expands on existing epic): As a business owner, I want to gain insights into customer demographics and preferences based on reservation data to improve marketing efforts.
+
+Epic: Waitlist Management (Expands on future enhancement 5)
+Manage Waitlist Priority: As a business owner, I want to be able to manage the waitlist priority based on factors like arrival time or party size.
+Staff Notifications: As a business owner, I want to receive notifications when a table opens up on the waitlist, allowing staff to efficiently seat waiting customers.
+
+Epic: Marketing and Promotions (Expands on existing epic)
+Promote Special Offers: As a business owner, I want to easily create and display special offers and promotions on the reservation system to attract customers.
+Track Promotion Performance: As a business owner, I want to track the performance of marketing campaigns to see which promotions are most effective in driving reservations.
+
+Additional Considerations:
+User stories for Payment Integration and Staff Accounts can be further detailed based on specific implementation plans (e.g., online payment options, staff roles and permissions).
+As the project evolves, consider user stories related to loyalty programs, online ordering, and table management features like merging or splitting tables.
+
+Implemented in the Project:
 1. As a customer, I want to see the available dates and times for booking a table at a restaurant so I can choose a convenient slot.
 2. As a customer, I want to specify the number of people in my party when booking a table so the restaurant can prepare accordingly.
-3. . As a customer, I want to be able to easily fill out a booking form with my name, contact information, and to specify the occasion.
-4. As a customer, I want the option to modify or cancel my reservation online in case my plans change, with clear instructions on any cancellation policies.
+3. As a customer, I want to be able to easily fill out a booking form with my name, contact information, and to specify the occasion.
+4. As a customer, I want the option to create, modify or cancel my reservation online in case my plans change, with clear instructions on any cancellation policies.
 5. As a customer, I want to receive a confirmation with the details of my reservation, including the date, time, number of people, and the occasion or special request.
+
+1. As a business owner, I want to have the possibility to administrate reservations using a administrations or staff account.
+2. As a business owner, I want to have customers to contact and submit table request.
 
 Future enhancement that would benify the project:
 1. As a customer, I want to be able to see the estimated wait time for a table if reservations are not available at my preferred time.
@@ -152,7 +250,7 @@ Bookatable provides a user-friendly and secure platform for managing restaurant 
 
 ### Getting Started:
 Clone the Repository:
-`git clone https://github.com/your-username/restaurant-table-reservation.git`
+`git clone https://github.com/your-username/restaurant.git`
 
 Install Dependencies:
 `pip install -r requirements.txt`
@@ -189,9 +287,13 @@ Open `http://127.0.0.1:8000/` in your web browser.
 
 ## 5. Testing
 
-When developing this project there was issues with the uploaded Cloudinary images, I could not find a workaround for this, or load the images through static in the Django project image folder. It was not possible to get the CSS to work on Heroku either, only in the development and with the Debug True mode. During the project, both database and other got corrupted when trying to add user functionalites for the reservations system. Even though special settings in both Django and in Heroku Config Var. There could be a database rights issue or anything else. The image itself is connected and resulting with a 200 server code in Chrome Developer mode, but when running the database in local environment it posts a 500 server code. There was also a problem to get a mockup based on the published Heroku app. 
+When developing this project there was issues with the uploaded Cloudinary images, I could not find a workaround for this, or load the images through static in the Django project image folder. It was not possible to get the CSS to work on Heroku either, only in the development and with the Debug True mode. During the project, both database and other got corrupted when trying to add user functionalites for the reservations system. Even though special settings in both Django and in Heroku Config Var. There could be a database rights issue or anything else. The image itself is connected and resulting with a 200 server code in Chrome Developer mode, but when running the database in local environment it posts a 500 server code. Note: This issues was later resolved in the updated published version here.
 
-https://ui.dev/amiresponsive?url=https://restaurant-table-reservation-1359a4e78b73.herokuapp.com/
+#### For more in-depth testing scenarios and results, please see the [README_testing.md](README_testing.md)
+
+There was also a problem to get a mockup based on the published Heroku app. 
+
+https://ui.dev/amiresponsive?url=https://restaurant-fine-dine-19f92102eee1.herokuapp.com/
 
 Testing Frameworks:
 
@@ -304,12 +406,12 @@ Open a terminal window and navigate to your desired local directory.
 
 ### Use git clone to clone your forked repository:
 
-`git clone https://github.com/OV00VO/restaurant-table-reservation.git`
+`git clone https://github.com/OV00VO/restaurant.git`
 
 ## Create a New Branch:
 
 ### Navigate to your cloned directory:
-`cd Restaurant-Table-Reservation`
+`cd restaurant`
 
 ## Create a new branch for your specific changes:
 
@@ -337,7 +439,7 @@ Make your code modifications within the branch.
 * Click the green "New pull request" button.
 * Select your branch containing your changes and the branch you want to merge 
 into (usually the main branch).
-* Provide a clear and descriptive title and explanation of your changes in the 
+* Provide a clear and descriptive title and explanation of your changes in the
 pull request body.
 * Click "Create pull request" to submit your contribution for review.
 
