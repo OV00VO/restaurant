@@ -19,23 +19,36 @@
            background-size: cover;
            background-position: center center;
            opacity: 0.9;">
-</section>
+<h2>.</h2></section>
 <div class="container position-absolute top-50 start-50 translate-middle text-center">
-    <h2><b>Contact Us at Restaurant Fine Dine</b></h2>
-    <p><b>Below you can find about more how you can contact at Restaurant Fine Dine</b></p>
-    <a href="{% url 'request_form' %}" class="btn btn-primary"
-        >Make a Reservation (Login to Book a Table or Request a Table)</a>
-        <div class="text-box" style="
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 110%;
-        height: 110%;
-        background-color: rgba(255, 255, 255, 0.8);
-        z-index: -1;
-        border-radius: 10px;
-      "></div>
-</div></section>
+  <h2><b>Contact Us at Restaurant Fine Dine</b></h2>
+  <p><b>Below you can find out more about contacting Restaurant Fine Dine</b></p>
+
+  {% if user.is_authenticated %}
+  <p>You are logged in as <b>{{ user.username }}</b>. Enjoy the benefits of managing your reservations!</p>
+
+  <a href="/my_reservations" class="btn btn-primary">
+    Create, Read/View, Update & Delete Reservations (Confirmed within 12 hours)
+  </a>
+{% else %}
+  <p>For faster confirmation, please log in or create an account.<br>Bookings made through requests are confirmed manually within 48 hours.</p>
+
+  <a href="/request_form" class="btn btn-primary">
+    Request a Table (Manual Confirmation within 48 hours)
+  </a>
+{% endif %}
+
+<div class="text-box" style="
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 110%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: -1;
+  border-radius: 10px;
+"></div>
+</div>
 
 <!-- Reference in modified parts below: Code Institute Curriculum and Code Star Project -->
 <section class="container py-5">
@@ -61,7 +74,7 @@
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">Message</label>
-          <input type="text" name="message" id="phone_number" class="form-control">
+          <input type="text" name="message" id="message" class="form-control">
         </div>
         <div class="text-center mt-3">
         <button type="submit" class="btn btn-primary">Contact us Now!</button>

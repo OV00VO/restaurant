@@ -21,7 +21,8 @@ class Reservation(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.date} at {self.time}"
-    
+
+
 class Booking(models.Model):
     guest = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
@@ -32,6 +33,3 @@ class Booking(models.Model):
     number_of_guests = models.PositiveIntegerField()
     occasion = models.CharField(max_length=255)
     agreed_to_terms = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.date} at {self.time}"

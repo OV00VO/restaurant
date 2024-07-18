@@ -14,11 +14,12 @@
 
 <body>
 
-{% extends 'base.html' %} {% block content %} 
-{% if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-      <li class="message {{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %} {% endblock %}
+  {% extends 'base.html' %} {% block content %} 
+  {% if messages %}
+    <div class="messages">
+      **List of messages:** {{ messages }} 
+      {% for message in messages %}
+        <span class="message {{ message.tags }}"> {{ message }} </span>
+      {% endfor %}
+    </div>
+  {% endif %} {% endblock %}

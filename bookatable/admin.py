@@ -6,4 +6,3 @@ from .models import Reservation, Booking
 
 admin.site.register(Reservation)
 admin.site.register(Booking)
-

@@ -32,8 +32,8 @@
     <br>
     <div class="container">
       <div class="col-md-6 mb-6">
-        <h2>Reservation Update for User:</h2><h3>{{ user.username }}</h3> 
-        <p>Current information for the booking name: <b>{{ reservation.name }}</b>, with ID no: <b>{{ reservation.id }}</b></p> 
+        <h2>Reservation Update for User:</h2><h3>{{ user.username }}</h3></div> 
+        <p>Current information for the booking name: <b>{{ reservation.name }}</b>, with ID no: <b>{{ reservation.id }}</b></p>
         {% if reservation %}
         <form
           method="POST"
@@ -51,10 +51,9 @@
           <br>
           <br>
           <br>
+      </form>
     {% else %}
-    <p>Reservation not found.</p>
+    <p>Reservation not found.</p></div> 
    
     {% endif %} 
     {% endblock %}
-  </body>
-</html>

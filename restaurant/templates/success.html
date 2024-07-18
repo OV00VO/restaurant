@@ -1,8 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
 <!-- Reference: Code Institute Curriculum and Code Star Project -->
 <!-- Reference: https://github.com/flatplanet/Django-CRM -->
 <!-- Reference: https://getbootstrap.com -->
 <!-- Notes: Below code is based on the above references and modifed for the project -->
-
+<head>
+    <title>My Reservation Details - Success</title>
+    </head>
 {% extends 'base.html' %} 
 {% block content %} 
 {% if user.is_authenticated %}
@@ -54,8 +58,9 @@
         </tr>
     </tbody>
 </table>
-<a href="{% url 'my_reservations' %}"
+<a href="/my_reservations"
     class="btn btn-success"
     >Back to Your Reservations</a>
 </section>
 {% endblock %}
+</html>

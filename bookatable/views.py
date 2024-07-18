@@ -1,4 +1,4 @@
-# Reference in modified parts below: Code Institute and Code Star Project   
+# Reference in modified parts below: Code Institute and Code Star Project
 # Reference in modified parts below: https://github.com/flatplanet/Django-CRM
 # Notes: Below code is modified and based on the above references.
 
@@ -21,6 +21,7 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
 
 def menu(request):
     return render(request, 'menu.html')
@@ -48,22 +49,23 @@ def reservation_success(request):
 
 def test_crud(request):
     return render(request, 'test_crud.html')
-   
- 
+
+
 def login_required_message(request):
     context = {}
     if not request.user.is_authenticated:
         context['login_message'] = "Please login to make a reservation"
-    return context   
-    
-        
+    return context
+
+
 def my_reservations(request):
     if not request.user.is_authenticated:
         return redirect('my_reservations')
- 
-    
+
+
 def agreed_to_terms(request):
     return render(request, 'agreed_to_terms.html')
+
 
 def success_view(request, reservation_id):
     reservation = get_object_or_404(Reservation, pk=reservation_id)
@@ -71,15 +73,18 @@ def success_view(request, reservation_id):
         'reservation': reservation
     }
     return render(request, 'success.html', context)
- 
+
+
 def error(request):
     error(request, 'Your reservation not has been successfully updated!')
     return render(request, 'error.html')
-    
+
+
 def confirmation_view(request, pk):
     reservation = Reservation.objects.get(pk=pk)
     context = {'reservation': reservation}
     return render(request, 'reservation_confirmation.html', context)
+
 
 def request_form(request):
     if request.method == 'POST':
@@ -90,8 +95,9 @@ def request_form(request):
         form = RequestForm()
 
     return render(request, 'request_form.html', {'form': form})
-    
-# Reference in modified parts below: https://github.com/flatplanet/Django-CRM      
+
+
+# Reference in modified parts below: https://github.com/flatplanet/Django-CRM
 @login_required
 def my_reservations(request):
     if request.method == 'POST':
@@ -125,7 +131,7 @@ def create_reservation(request):
 @login_required
 def view_reservation(request, reservation_id):
     try:
-        reservation = Reservation.objects.get(pk=reservation_id, 
+        reservation = Reservation.objects.get(pk=reservation_id,
                                               user=request.user)
         context = {'reservation': reservation}
         return render(request, 'view_reservation.html', context)
@@ -133,10 +139,12 @@ def view_reservation(request, reservation_id):
         messages.error(request, 'Reservation not found!')
         return redirect('my_reservations')
 
+
 @login_required
 def update_reservation(request, reservation_id):
     try:
-        reservation = get_object_or_404(Reservation, pk=reservation_id, user=request.user)
+        reservation = get_object_or_404(Reservation,
+                                        pk=reservation_id, user=request.user)
     except Reservation.DoesNotExist:
         messages.error(request, 'Reservation not found!')
         return redirect('my_reservations')
@@ -154,11 +162,12 @@ def update_reservation(request, reservation_id):
 
     context = {'form': form, 'reservation': reservation}
     return render(request, 'update_reservation.html', context)
-    
+
+
 @login_required
 def delete_reservation(request, reservation_id):
     try:
-        reservation = Reservation.objects.get(pk=reservation_id, 
+        reservation = Reservation.objects.get(pk=reservation_id,
                                               user=request.user)
         reservation.delete()
         messages.success(request, 'Reservation deleted successfully!')
@@ -166,7 +175,8 @@ def delete_reservation(request, reservation_id):
     except Reservation.DoesNotExist:
         messages.error(request, 'Reservation not found!')
         return redirect('my_reservations')
-    
+
+
 @login_required
 def update_user_info(request):
     if request.method == 'POST':
