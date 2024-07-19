@@ -10,16 +10,16 @@
 [Link to deployed Heroku app](https://restaurant-fine-dine-19f92102eee1.herokuapp.com)
 
 ### Table of Contents
-01. [Introduction:](#1-introduction)
-02. [User Experience (UX):](#2-user-experience-ux)
-03. [Features:](#3-features)
-04. [Technologies Used:](#4-technologies-used)
-05. [Data Schema and Relationships:](#5-data-schema-relationships)
-06. [Testing:](#5-testing)
-07. [Deployment:](#6-deployment)
-08. [References/Credits:](#7-references-and-credits)
-09. [Contributing:](#8-contributing)
-10. [License:](#9-licence)
+01. [Introduction:](#01-introduction)
+02. [User Experience Design (UX) and User Interface Design:](#02-ux-and-ui)
+03. [Features:](#03-features)
+04. [Technologies Used:](#04-technologies-used)
+05. [Data Schema and Relationships:](#05-data-schema-and-relationships)
+06. [Testing:](#06-testing)
+07. [Deployment:](#07-deployment)
+08. [References/Credits:](#08-references-and-credits)
+09. [Contributing:](#09-contributing)
+010. [License:](#10-licence)
 
 ## 01. Introduction
 
@@ -181,7 +181,10 @@ The development of Restaurant Fine Dine wouldn't have been possible without the 
 
 Restaurant Fine Dine represents a comprehensive solution for enhancing the fine dining experience for both guests and restaurant staff. By leveraging Agile methodologies, user-centered design principles, and a robust technology stack, it delivers a seamless and personalized experience that caters to the needs of all stakeholders. This document has provided a high-level overview of Restaurant Fine Dine. We'll delve deeper into specific aspects in the following sections.
 
-## 02. User Experience (UX) and User Interface (UI)
+## 02. UX and UI
+
+### User Experience Design (UX) and User Interface Design (UI)
+
 User Epics:
 
 #### User Management: This epic would encompass all functionalities related to user accounts, including:
