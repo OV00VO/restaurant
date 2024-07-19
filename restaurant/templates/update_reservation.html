@@ -40,6 +40,7 @@
           action="{% url 'update_reservation' reservation.id %}">
           {% csrf_token %}
           {{ form|crispy }}
+          <a href="/agreed_to_terms">Terms and Conditions</a><br><br>
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Save Changes</button> <a href="{% url 'my_reservations' %}"
             class="btn btn-success"
