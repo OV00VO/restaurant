@@ -84,7 +84,9 @@
   </table>
   <div class="text-center mt-3">
     <button type="button" class="btn btn-sm btn-success" title="Create a New Reservation" onclick="if (confirm('Are you sure you want to create a new reservation?')) { window.location.href='{% url 'create_reservation' %}'; }">
-      <i class="fas fa-trash-alt"></i> Create a New Reservation
+      <i class="fas fa-plus"></i> Create a New Reservation
+    </button> <button type="button" class="btn btn-sm btn-secondary" title="Exit Reservation Page" onclick="if (confirm('Changed your mind? Did you not want to create a New Reservation? Please Confirm or Cancel')) { window.location.href='{% url 'home' %}'; }">
+      <i class="fa-regular fa-circle-xmark"></i> Exit Reservation Page
     </button>
   </div>
     </main>
