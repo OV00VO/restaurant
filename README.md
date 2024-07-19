@@ -163,6 +163,12 @@ Thorough testing is paramount for a seamless user experience. Restaurant Fine Di
 
 ![Restaurant Table Reservation](restaurant/images/home1.png)
 
+**Redirection if Error 404 or 500 occurs**
+ 
+![Restaurant Table Reservation](restaurant/images/404.png)
+
+![Restaurant Table Reservation](restaurant/images/500.png)
+
 **Deployment and Technology Stack**
 
 Restaurant Fine Dine leverages a robust technology stack to deliver a high-performing and user-friendly experience. We'll explore the technologies used in a later section.
@@ -439,28 +445,30 @@ The relationships between these entities remain the same:
 * Delete: Users can cancel their own reservations (within a specific timeframe before the reservation).
 
 **Administrative Functionalities:**
-* All CRUD operations: Administrators can Create, Read, Update, and Delete all data within the system, including:
-Customer information
-Reservation details
+
+All CRUD operations: Administrators can Create, Read, Update, and Delete all data within the system, including:
+* Customer information
+* Reservation details
+
 User Management: Administrators can create, edit, and delete user accounts.
+
 Additional Considerations:
-Implement a secure user authentication system for login and managing reservations.
-Designate clear user roles (e.g., user, administrator) with restricted access levels.
-Define timeframes for users to modify or cancel their reservations.
-Consider functionalities like email confirmations for reservations and modifications (optional).
-Explore integrating with a table management system for assigning tables to reservations (optional).
-Focus on Core Functionalities:
+* Implement a secure user authentication system for login and managing reservations.
+* Designate clear user roles (e.g., user, administrator) with restricted access levels.
+* Define timeframes for users to modify or cancel their reservations.
+* Consider functionalities like email confirmations for reservations and modifications (optional).
+* Explore integrating with a table management system for assigning tables to reservations (optional).
+
+**Focus on Core Functionalities:**
 This approach prioritizes core CRUD functionalities for users while granting administrators full control over the system and user management. This ensures data integrity and allows for streamlined reservation management.
-
-
 
 ## 06. Testing
 
-When developing this project there was issues with the uploaded Cloudinary images, I could not find a workaround for this, or load the images through static in the Django project image folder. It was not possible to get the CSS to work on Heroku either, only in the development and with the Debug True mode. During the project, both database and other got corrupted when trying to add user functionalites for the reservations system. Even though special settings in both Django and in Heroku Config Var. There could be a database rights issue or anything else. The image itself is connected and resulting with a 200 server code in Chrome Developer mode, but when running the database in local environment it posts a 500 server code. Note: This issues was later resolved in the updated published version here.
+When developing this project there was issues with the uploaded Cloudinary images, I could not find a workaround for this, or load the images through static in the Django project image folder. It was not possible to get the CSS to work on Heroku either, only in the development and with the Debug True mode. During the project, both database and other got corrupted when trying to add user functionalites for the reservations system. Even though special settings in both Django and in Heroku Config Var. There could be a database rights issue or anything else. The image itself is connected and resulting with a 200 server code in Chrome Developer mode, but when running the database in local environment it posts a 500 server code. **Note: These issues was later resolved in the updated and published version here.**
 
 #### For more in-depth testing scenarios and results, please see the [README_testing.md](README_testing.md)
 
-There was also a problem to get a mockup based on the published Heroku app. 
+There was also a problem to get a mockup based on the published Heroku app see:
 
 https://ui.dev/amiresponsive?url=https://restaurant-fine-dine-19f92102eee1.herokuapp.com/
 
@@ -470,13 +478,13 @@ Testing Frameworks:
 
 https://validator.w3.org/
 
-I conducted manual testing on the HTML code to ensure it adheres to web standards. This involved verifying the overall structure, checking for proper nesting of elements, and confirming the presence of closing tags. Additionally, I tested the functionality of hyperlinks and forms, ensuring they link to the correct destinations and submit data as expected. To be mentioned is that there is functions that could not properly be replaced to functions in the validator for instance functions for navbar and some of the database connections on the projects pages, without risking the overall function. 
+I conducted manual testing on the HTML code to ensure it adheres to web standards. This involved verifying the overall structure, checking for proper nesting of elements, and confirming the presence of closing tags. Additionally, I tested the functionality of hyperlinks and forms, ensuring they link to the correct destinations and submit data as expected. To be mentioned is that there is functions that could not properly be replaced to functions in the validator for instance functions for navbar and some of the database connections on the projects pages, without risking the overall function.
 
 #### CSS:
 
 https://jigsaw.w3.org/css-validator/
 
-My manual testing of the CSS focused on the visual appearance of the application. I checked for consistent styling across different pages, ensuring elements like buttons, menus, and text adhere to the intended design. Additionally, I tested the responsiveness of the layout on various screen sizes (desktop, mobile, tablet) to confirm proper display across devices. However there is a problem loading this to Heroku, and functions works in development mode but not as a deployed Heroku app. None of the troubleshooting I was able to found was able to offer a solutiong to fix these issues.
+My manual testing of the CSS focused on the visual appearance of the application. I checked for consistent styling across different pages, ensuring elements like buttons, menus, and text adhere to the intended design. Additionally, I tested the responsiveness of the layout on various screen sizes (desktop, mobile, tablet) to confirm proper display across devices. However there is a problem loading this to Heroku, and functions works in development mode but not as a deployed Heroku app. None of the troubleshooting I was able to found was able to offer a solutiong to fix these issues. **Note: These issues was later resolved in the updated and published version here.**
 
 #### JavaScript:
 
@@ -493,7 +501,7 @@ While not strictly manual testing, I used a pep 8 linting tool called CI Python 
 
 #### Unit Database Testing: 
 Unittest (built-in with Python) or pytest Unit tests focus on individual functions and modules, ensuring they behave as expected with various inputs. For this project 
-PyTest was used, but not all with success in all functions, there was database access issues and some functions and test had to be removed due to not compatible, but also that in some cases I could not find the proper information for a solution and a manual testing method was instead used in some cases.
+PyTest was used, but not all with success in all functions, there was database access issues and some functions and test had to be removed due to not compatible, but also that in some cases I could not find the proper information for a solution and a manual testing method was instead used in most cases.
 
 * Unittest
 https://docs.python.org/3/library/unittest.html
@@ -514,7 +522,7 @@ Create a Heroku Account: `https://signup.heroku.com/`
 Install the Heroku CLI: `https://devcenter.heroku.com/`
 
 ### Create a New Heroku App:
-`heroku create restaurant-table-reservation`
+`heroku create restaurant-fine-dine`
 
 ### Set Up PostgreSQL on Heroku:
 `heroku addons:create heroku-postgres:rtr`
