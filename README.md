@@ -574,7 +574,7 @@ https://getbootstrap.com
 #### Inspiration for the CRUD test function for the structure and backend:
 https://www.pythonpool.com/python-unittest-vs-pytest/
 
-### 09. Contributing
+## 09. Contributing
 It is appreciated for contributions from the community to add to this projects foundation for our collective knowledge! If you have bug fixes, improvements, or new features, feel free to submit a pull request. Here's a suggested workflow for contributing:
 
 ### Fork the Repository:
