@@ -7,9 +7,8 @@
 <html class="h-100" lang="en">
 <head>
   <title>Restaurant - Fine Dine - Create Reservation</title>
-  <meta name="description" content="Plan your unforgettable fine-dining 
-  experience! Book a table online at our restaurant and savor exquisite cuisine
-  in an elegant ambiance.">
+  <meta name="description" content="Plan your unforgettable fine-dining experience! 
+  Book a table online at our restaurant and savor exquisite cuisine in an elegant ambiance.">
 </head>
 
 {% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
@@ -19,23 +18,33 @@
 <br>
 <br>
 <section class="container py-5">
-<h2>Welcome, {{ user.username }}!</h2>
+  <h2>Welcome, {{ user.username }}!</h2>
 {% endif %}
 
 <!-- Reference in modified parts below: https://github.com/flatplanet/Django-CRM -->
 <h2>Please Create Your Next Reservation Here!</h2>
-
-<form method="POST" action="/create_reservation">
+<form method="POST" action="{% url 'create_reservation' %}">
   {% csrf_token %}
   {{ form|crispy }}
-  <a href="/agreed_to_terms">Terms and Conditions</a><br>
+
+  <div class="form-group">
+    <label for="agreed_to_terms">
+      <input type="checkbox" id="agreed_to_terms" name="agreed_to_terms" required>
+      I agree to the <a href="/agreed_to_terms">Terms and Conditions</a>.
+    </label>
+    {% if form.errors.agreed_to_terms %}
+      <ul class="errorlist">
+        <li>{{ form.errors.agreed_to_terms }}</li>
+      </ul>
+    {% endif %}
+  </div>
+
   <div class="row">
     <div class="text-center mt-3"></div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Create Reservation</button>
-      <a href="/my_reservations" class="btn btn-success"
-      >Back to Your Reservations</a>
-  </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Create Reservation</button>
+      <a href="/my_reservations" class="btn btn-success">Back to Your Reservations</a>
+    </div>
   </div>
 </div>
 </form>
@@ -45,4 +54,5 @@
 <br>
 <br>
 </section>
+
 {% endblock %}
