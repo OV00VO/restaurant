@@ -17,7 +17,7 @@ class CreateReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['name', 'email', 'phone_number', 'date', 'time',
-                  'number_of_guests', 'occasion', 'agreed_to_terms']
+                  'number_of_guests', 'occasion']
         widgets = {
             'date': forms.DateInput(attrs={'class': 'form-control', 'type':
                                                     'date', 'id': 'id_date'}),
@@ -29,7 +29,7 @@ class UpdateReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['name', 'email', 'phone_number', 'date', 'time',
-                  'number_of_guests', 'occasion', 'agreed_to_terms']
+                  'number_of_guests', 'occasion']
 
         widgets = {
             'date': forms.DateInput(attrs={'class': 'form-control', 'type':
