@@ -185,7 +185,7 @@ Restaurant Fine Dine represents a comprehensive solution for enhancing the fine 
 
 ### User Experience Design (UX) and User Interface Design (UI)
 
-User Epics:
+**User Epics:**
 
 #### User Management: This epic would encompass all functionalities related to user accounts, including:
 User registration and login
@@ -284,6 +284,7 @@ As the project evolves, consider user stories related to loyalty programs, onlin
 #### Implemented in the Project:
 
 #### User Stories - Customer
+
 01. (USC_01) - As a customer, I want to see the available dates and times for booking a table at a restaurant so I can choose a convenient slot.
 
 02. (USC_02) - As a customer, I want to specify the number of people in my party when booking a table so the restaurant can prepare accordingly.
@@ -299,6 +300,7 @@ As the project evolves, consider user stories related to loyalty programs, onlin
 07. (USC_07) - As a customer, I want to see the restaurant's menu and pricing information online before making a reservation so I can make an informed decision.
 
 **Additional User Stories - Not Implemented**
+
 08. (USC_08) - As a customer, I want to search for restaurants by location, cuisine type, or specific keywords so I can easily find restaurants that meet my preferences.
 
 09. (USC_09) - As a customer, I want to be able to read reviews and ratings left by other diners to get an idea of the restaurant's atmosphere, food quality, and service.
@@ -310,6 +312,7 @@ As the project evolves, consider user stories related to loyalty programs, onlin
 12. (USC_12) - As a customer, I want to receive a confirmation email with the details of my reservation, including the date, time, number of people, and any special requests.
 
 #### User Stories - Business Owner
+
 01. (USBO_01) - As a business owner or staff member, I want to have the possibility to administrate reservations using an administration or staff account.
 
 02. (USBO_02) - As a business owner or staff member, I want to allow customers to easily contact and submit table requests online through the Restaurant Fine Dine Table Reservation platform.
@@ -321,6 +324,7 @@ As the project evolves, consider user stories related to loyalty programs, onlin
 05. (USBO_05) - As a business owner or staff member, I want to be able to manage my restaurant's profile on the Restaurant Fine Dine Table Reservation platform, including updating information like opening hours, contact details, and photos.
 
 **Additional User Stories - Business Owner or Staff Member - Not Implemented**
+
 06. (USBO_06) - As a business owner or staff member, I want to have control over my restaurant's availability by setting online reservation time slots and managing table capacity to avoid overbooking.
 
 07. (USBO_07) - As a business owner or staff member, I want to access reports and analytics on reservation data to gain insights into customer behavior, peak dining times, and popular menu items.
@@ -330,6 +334,38 @@ As the project evolves, consider user stories related to loyalty programs, onlin
 09. (USBO_09) - As a business owner or staff member, I want to be able to manage the waitlist for tables and notify customers when their table is ready.
 
 10. (USBO_10) - As a business owner or staff member, I want to be able to see a live dashboard of upcoming reservations, including the date, time, name, contact information, and special requests of each party.
+
+### User Acceptance Criteria (UAC)
+
+#### (UC_1.0) User Registration & Login:
+
+01. (UC_1.1) - Users can register for an account using a valid email address, password, and optional information like name and phone number.
+
+02. (UC_1.2) - Users can log in using their registered email address and password.
+
+03. (UC_1.3) - The system validates email format and password strength during registration.
+
+04. (UC_1.4) - The login process should be secure (using hashed passwords).
+
+#### (UC_2.0) Table Reservation:
+
+05. (UC_2.1) - Users can view available tables for a specific restaurant on a date and time.
+
+06. (UC_2.2) - The system displays a calendar or similar interface for selecting a reservation date and time.
+
+07. (UC_2.3) - The system prevents users from booking tables in the past or already booked slots.
+
+08. (UC_2.4) - Users can specify the number of guests in their reservation. The system should validate that a valid number of guests is chosen (e.g., not zero).
+
+09. (UC_2.5) - Upon successful reservation, the user receives a confirmation email with details like restaurant name, date, time, and number of guests.
+
+#### (UC_3.0) Admin Functionalities:
+
+10. (UC_3.1) - Admin users can view and manage all restaurant bookings.
+
+11. (UC_3.2) - Admin users can update or cancel existing bookings.
+
+12. (UC_3.3) - Admin users can add, edit, or delete restaurant information.
 
 ## 03. Features 
 
