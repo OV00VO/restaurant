@@ -5,6 +5,8 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email, RegexValidator
 # Reference in modified parts below: https://github.com/flatplanet/Django-CRM
 
 
@@ -18,9 +20,6 @@ class Reservation(models.Model):
     number_of_guests = models.PositiveIntegerField()
     occasion = models.CharField(max_length=255)
     agreed_to_terms = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.date} at {self.time}"
 
 
 class Booking(models.Model):

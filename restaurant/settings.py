@@ -12,7 +12,7 @@ load_dotenv()
 
 from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT, DB_SSL
 
-DEBUG = False
+DEBUG = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

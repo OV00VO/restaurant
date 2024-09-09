@@ -4,25 +4,21 @@
 
 from django import forms
 from bookatable.models import Reservation
-
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field, Submit
 
 class ReservationModelForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['user', 'name', 'email', 'phone_number', 'date', 'time',
-                  'number_of_guests', 'occasion', 'agreed_to_terms']
+        fields = '__all__'
 
 
 class CreateReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['name', 'email', 'phone_number', 'date', 'time',
-                  'number_of_guests', 'occasion', 'agreed_to_terms']
-        widgets = {
-            'date': forms.DateInput(attrs={'class': 'form-control', 'type':
-                                                    'date', 'id': 'id_date'}),
-            'time': forms.TimeInput(attrs={'class': 'form-control', 'type':
-                                           'time', 'id': 'id_time'}), }
+        fields = '__all__'
 
 
 class UpdateReservationForm(forms.ModelForm):
