@@ -72,11 +72,11 @@
       {% else %}
         <p>Reservation not found.</p>
       {% endif %}
-    
+      <div class="col-12 text-center mt-3">
     <a href="{% url 'update_reservation' reservation.id %}"
     class="btn btn-warning"
     >Edit Reservation</a
-  > <a href="{% url 'my_reservations' %}"
+  ><br><br><a href="{% url 'my_reservations' %}"
   class="btn btn-success"
   >Back to Your Reservations</a></div></div>
   </main>

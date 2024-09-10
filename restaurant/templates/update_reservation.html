@@ -40,23 +40,12 @@
           action="{% url 'update_reservation' reservation.id %}">
           {% csrf_token %}
           {{ form|crispy }}
-
-          <div class="form-group">
-            <label for="agreed_to_terms">
-              <input type="checkbox" id="agreed_to_terms" name="agreed_to_terms" required>
-              I agree to the <a href="/agreed_to_terms">Terms and Conditions</a>.
-            </label>
-            {% if form.errors.agreed_to_terms %}
-              <ul class="errorlist">
-                <li>{{ form.errors.agreed_to_terms }}</li>
-              </ul>
-            {% endif %}
-          </div><br>
-
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary">Save Changes</button> <a href="{% url 'my_reservations' %}"
-            class="btn btn-success"
-            >Back to Your Reservations</a>
+          <p><b>Note:</b> To be able to save your new data, please uncheck the status of the previous Agreed to terms box above, and recheck it once more.</p>
+          <a href="/agreed_to_terms" target="_blank">Read Terms and Conditions</a>
+                <div class="row">
+        <div class="col-12 text-center mt-3">
+          <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Save Changes</button>
+          <a href="/my_reservations" class="btn btn-success">Back to Your Reservations</a>
         </div>
           <br>
           <br>
