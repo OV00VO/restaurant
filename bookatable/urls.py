@@ -4,7 +4,9 @@
 
 from django.urls import path, include
 from . import views
+from restaurant import settings
 from django.contrib.auth import views as auth_views
+from django.conf.urls.static import static
 from .views import update_reservation, \
                    create_reservation, \
                    success_view, request_form
@@ -52,4 +54,5 @@ urlpatterns = [
     path('password_reset/complete/',
          auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
+    
 ]

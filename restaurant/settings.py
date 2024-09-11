@@ -2,6 +2,7 @@
 # Reference in modified parts below: https://github.com/flatplanet/Django-CRM
 # Notes: Below code is based on the above references and modifed for the project
 
+import django_heroku
 import os
 import environ
 from dotenv import load_dotenv
@@ -12,7 +13,7 @@ load_dotenv()
 
 from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT, DB_SSL
 
-DEBUG = False
+DEBUG = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,7 +86,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
 
 INTERNAL_IPS = ['127.0.0.1', '34.105.32.159']
 
