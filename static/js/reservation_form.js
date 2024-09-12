@@ -119,12 +119,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const selectedMinutes = timeToMinutes(selectedTime);
 
-        // Check if selected time is within available time slots
         if (availableTimeSlots.includes(selectedTime)) {
-            return selectedTime;  // No adjustment needed for valid time
+            return selectedTime;
         }
 
-        // Find the next valid slot or fallback to the next day
         const nextAvailableSlot = availableTimeSlots.find
         (slot => timeToMinutes(slot) > selectedMinutes);
 
@@ -132,14 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
             return nextAvailableSlot;
         }
 
-        // If no slot is available today, move to the next day's opening slots
         let nextDay = (dayOfWeek + 1) % 7;
         let nextAvailableSlots = getAvailableTimeSlots(nextDay);
         if (nextAvailableSlots.length) {
             return nextAvailableSlots[0];
         }
 
-        return null;  // No available slots
+        return null;
     }
 
     function updateSubmitButton() {
@@ -282,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `to the closest available time:\n` +
                 `${formattedDate} at ${adjustedTime}.\n\n` +
                 `If you would like to change it, press Cancel.` +
-                `Otherwise, press OK to confirm the adjusted time.`;
+                ` Otherwise, press OK to confirm the adjusted time.`;
 
             if (!confirm(timeAdjustmentMessage)) {
                 event.preventDefault();
