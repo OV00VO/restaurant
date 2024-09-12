@@ -34,3 +34,4 @@ setuptools==70.2.0
 silx==2.1.0
 sqlparse==0.5.0
 whitenoise==6.7.0
+psycopg2-binary

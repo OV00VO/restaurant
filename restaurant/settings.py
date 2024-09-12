@@ -1,6 +1,6 @@
-# Reference in modified parts below: Code Institute Curriculum and Code Star Project   
+# Reference in modified parts below: Code Institute Curriculum and Code Star Project
 # Reference in modified parts below: https://github.com/flatplanet/Django-CRM
-# Notes: Below code is based on the above references and modifed for the project
+# Notes: Below code is based on the above references and modified for the project
 
 import django_heroku
 import os
@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 import dj_database_url
 from pathlib import Path
 import secrets
+
 load_dotenv()
 
 from config import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, SECRET_KEY, ALLOWED_HOSTS, DB_PORT, DB_SSL
@@ -24,19 +25,14 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-            'django.template.context_processors.debug',
-            'django.template.context_processors.request',
-            'django.contrib.auth.context_processors.auth',
-            'django.contrib.messages.context_processors.messages',
-     ]
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ]
+        }
     }
-  }
 ]
-
-
-DB_HOST = os.environ.get('DB_HOST')
-
-SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DATABASES = {
     'default': {
@@ -45,11 +41,15 @@ DATABASES = {
         'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
-        'PORT' : DB_PORT,
-        'sslmode': DB_SSL,  
+        'PORT': DB_PORT,
+        'OPTIONS': {
+            'sslmode': DB_SSL,
+        }
     }
 }
-ALLOWED_HOSTS = ALLOWED_HOSTS
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'pytest',
     'debug_toolbar',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -89,9 +89,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 INTERNAL_IPS = ['127.0.0.1', '34.105.32.159']
 
@@ -103,10 +103,10 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.codeanyapp.com",
     "https://*.herokuapp.com",
     "https://*.cloudinary.com",
-    "http://127.0.0.1:8000/"
+    "http://127.0.0.1:8000"
 ]
 
-AUTH_PASSWORD_VALIDATORS = [ 
+AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -124,26 +124,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static',)]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION = {
-    'LOGIN_URL': 'login/', 
+    'LOGIN_URL': 'login/',
 }
-
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',   
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
-

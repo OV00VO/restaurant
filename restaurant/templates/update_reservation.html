@@ -54,9 +54,8 @@
     <script src="{% static '/js/reservation_form.js' %}"></script>
     
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const termsCheckbox = document.getElementById('id_agreed_to_terms');
-    
+      document.addEventListener("DOMContentLoaded", function() {
+        const termsCheckbox = document.getElementById("id_agreed_to_terms");
     if (termsCheckbox) {
         termsCheckbox.checked = false;
     }
