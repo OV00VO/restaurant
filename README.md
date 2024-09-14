@@ -347,7 +347,7 @@ As the project evolves, consider user stories related to loyalty programs, onlin
 
 04. (UC_1.4) - The login process should be secure (using hashed passwords).
 
-#### (UC_2.0) Table Reservation:
+#### (UC_2.0) Table Reservation: - Not Implemented
 
 05. (UC_2.1) - Users can view available tables for a specific restaurant on a date and time.
 
@@ -504,6 +504,122 @@ This approach prioritizes core CRUD functionalities for users while granting adm
 ## 06. Testing
 
 When developing this project there was issues with the uploaded Cloudinary images, I could not find a workaround for this, or load the images through static in the Django project image folder. It was not possible to get the CSS to work on Heroku either, only in the development and with the Debug True mode. During the project, both database and other got corrupted when trying to add user functionalites for the reservations system. Even though special settings in both Django and in Heroku Config Var. There could be a database rights issue or anything else. The image itself is connected and resulting with a 200 server code in Chrome Developer mode, but when running the database in local environment it posts a 500 server code. **Note: These issues was later resolved in the updated and published version here.**
+
+#### Test Scenarios for Reservation Form - Login Required
+
+**Scenario 1: Valid Input**
+Description: All fields are filled with valid data.
+
+Test Steps:
+* Enter a valid name: John Doe.
+* Enter a valid email: john.doe@example.com.
+* Enter a valid phone number: +1234567890.
+* Enter a valid number of guests: 4.
+* Select a valid future date (e.g., 2024-09-20).
+* Select a valid time within the restaurant's opening hours (e.g., 19:00).
+* Enter a valid occasion: Birthday.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should submit successfully, and the reservation details should be adjusted if needed, with the user seeing a confirmation message with the reservation details.
+
+**Scenario 2: Invalid Name**
+Description: The name field is invalid (e.g., less than 2 parts or contains invalid characters).
+
+**Test Steps:**
+* Enter an invalid name: John.
+* Enter valid email, phone number, guests, date, time, and occasion.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. An alert should display: "Please enter a valid full name."
+
+**Scenario 3: Invalid Email**
+Description: The email field is invalid (e.g., incorrectly formatted).
+
+Test Steps:
+* Enter a valid name, phone number, guests, date, time, and occasion.
+* Enter an invalid email: john.doe@com.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. An alert should display: "Please enter a valid email address."
+
+**Scenario 4: Invalid Phone Number**
+Description: The phone number field is invalid (e.g., incorrect format).
+
+Test Steps:
+* Enter a valid name, email, guests, date, time, and occasion.
+* Enter an invalid phone number: 12345.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. An alert should display: "Please enter a valid phone number."
+
+**Scenario 5: Invalid Number of Guests**
+Description: The number of guests is outside the valid range.
+
+Test Steps:
+* Enter a valid name, email, phone number, date, time, and occasion.
+* Enter an invalid number of guests: 0 or 101.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. An alert should display: "Please enter a number of guests between 1 and 100."
+
+**Scenario 6: Invalid Date**
+Description: The selected date is in the past or is a Sunday.
+
+Test Steps:
+* Enter a valid name, email, phone number, number of guests, time, and occasion.
+* Select a past date or a Sunday (e.g., 2024-09-15 for a past date or 2024-09-22 for a Sunday).
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. The date should be adjusted to the next valid date, and the user should be prompted with a message to confirm the adjusted reservation details.
+
+**Scenario 7: Invalid Occasion**
+Description: The occasion description is too short.
+
+Test Steps:
+* Enter valid name, email, phone number, guests, date, and time.
+* Enter an invalid occasion: AB.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. An alert should display: "Please describe your occasion."
+
+**Scenario 8: Terms Checkbox Unchecked**
+Description: The terms checkbox is not checked.
+
+Test Steps:
+* Enter valid name, email, phone number, guests, date, time, and occasion.
+* Do not check the terms checkbox.
+* Submit the form.
+
+Expected Result: The submit button should be disabled, and the form should not submit. The submit button should be enabled when the checkbox is checked.
+
+**Scenario 9: Time Out of Booking Hours**
+Description: The selected time is not within the allowed booking hours or is too close to closing time.
+
+Test Steps:
+* Enter valid name, email, phone number, guests, date, and occasion.
+* Select a time that is too close to closing hours (e.g., 13:45 or 22:30).
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. An alert should display with a message indicating that the time is not bookable due to closing hours restrictions.
+
+**Scenario 10: Time Slot Adjustment**
+Description: Adjusted time is provided if the initially selected time is not available.
+
+Test Steps:
+* Enter valid name, email, phone number, guests, occasion, and a time that is not available.
+* Select a valid date.
+* Check the terms checkbox.
+* Submit the form.
+
+Expected Result: The form should not submit. The time should be adjusted to the next available slot, and the user should be prompted with confirmation details including the adjusted time.
 
 #### For more in-depth testing scenarios and results, please see the [README_testing.md](README_testing.md)
 
