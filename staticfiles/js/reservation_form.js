@@ -1,21 +1,50 @@
+// References:
+// https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+// https://www.w3schools.com/js/js_validation.asp
+// https://regex101.com/r/TGpiRb/1/codegen?language=python
+// https://developer.mozilla.org/..
+// en-US/docs/Web/JavaScript/Reference/Regular_expressions
+// https://developer.mozilla.org/..
+// en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+// https://www.w3schools.com/js/js_dates.asp
+// https://formvalidation.io/guide/validators/
+// https://jqueryvalidation.org
+
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("reservation-form");
     const submitButton = document.getElementById("submit-btn");
     const termsCheckbox = document.getElementById("id_agreed_to_terms");
     const isUpdatePage = window.location.href.includes("update_reservation");
 
-    const openingHours = {
-        "0": "closed",  // Sunday
-        "1": "11:30-13:00,18:00-22:00",  // Monday
-        "2": "11:30-13:00,18:00-22:00",  // Tuesday
-        "3": "11:30-13:00,18:00-22:00",  // Wednesday
-        "4": "11:30-13:00,18:00-22:00",  // Thursday
-        "5": "11:30-13:00,18:00-02:00",  // Friday
-        "6": "18:00-02:00"  // Saturday
+    const OPENING_HOURS = {
+        0: [], // Sunday
+        1: [ // Monday
+            { start: "11:30", end: "14:00" },
+            { start: "18:00", end: "23:00" }
+        ],
+        2: [ // Tuesday
+            { start: "11:30", end: "14:00" },
+            { start: "18:00", end: "23:00" }
+        ],
+        3: [ // Wednesday
+            { start: "11:30", end: "14:00" },
+            { start: "18:00", end: "23:00" }
+        ],
+        4: [ // Thursday
+            { start: "11:30", end: "14:00" },
+            { start: "18:00", end: "23:00" }
+        ],
+        5: [ // Friday
+            { start: "11:30", end: "14:00" },
+            { start: "18:00", end: "03:00" }
+        ],
+        6: [ // Saturday
+            { start: "18:00", end: "03:00" }
+        ]
     };
 
-    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday",
-                      "Thursday", "Friday", "Saturday"];
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+                      "Friday", "Saturday"];
 
     function trimInput(input) {
         return input.trim();
@@ -26,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const nameParts = trimmedName.split(" ");
         const validNamePattern = /^[A-Za-zÀ-ÿ\-"\s]+$/;
         return nameParts.length >= 2 &&
-               nameParts.every(part => part.length >= 2 &&
-               validNamePattern.test(part));
+            nameParts.every(part => part.length >= 2 &&
+                validNamePattern.test(part));
     }
 
     function validatePhone(phone) {
@@ -39,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validateGuests(numGuests) {
-        return Number.isInteger(numGuests) &&
-               numGuests >= 1 && numGuests <= 100;
+        return Number.isInteger(numGuests) && numGuests >= 1 &&
+            numGuests <= 100;
     }
 
     function validateDate(selectedDate) {
@@ -64,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function minutesToTime(minutes) {
         const hour = Math.floor(minutes / 60);
         const minute = minutes % 60;
-        return `${hour.toString().padStart
-        (2, "0")}:${minute.toString().padStart(2, "0")}`;
+        return hour.toString().padStart(2, "0") + ":" +
+            minute.toString().padStart(2, "0");
     }
 
     function generateTimeSlots(start, end) {
@@ -80,66 +109,77 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function getAvailableTimeSlots(dayOfWeek) {
-        const periods = openingHours[dayOfWeek];
-        if (periods === "closed") {
-            return [];
-        }
-
+        const periods = OPENING_HOURS[dayOfWeek];
+        if (periods.length === 0) return [];
         let availableSlots = [];
-        periods.split(",").forEach(function (period) {
-            const [start, end] = period.split("-");
+        periods.forEach(({ start, end }) => {
             let endMinutes = timeToMinutes(end);
             const startMinutes = timeToMinutes(start);
-
             if (endMinutes < startMinutes) {
                 endMinutes += 24 * 60;
                 availableSlots = availableSlots.concat(
                     generateTimeSlots(start, "23:59"),
-                    generateTimeSlots("00:00", end)
+                    generateTimeSlots("00:00", minutesToTime(
+                        endMinutes % (24 * 60)))
                 );
             } else {
                 availableSlots = availableSlots.concat(
-                    generateTimeSlots(start, end)
-                );
+                    generateTimeSlots(start, end));
             }
         });
-
         return availableSlots;
     }
 
-    function adjustTime(selectedTime, dayOfWeek) {
+    function adjustTime(selectedTime, selectedDate) {
         if (!selectedTime) {
-            return null;
+            return { time: null, date: selectedDate };
         }
 
+        const dayOfWeek = selectedDate.getDay();
         const availableTimeSlots = getAvailableTimeSlots(dayOfWeek);
+
         if (!availableTimeSlots.length) {
-            return selectedTime;
+            let nextAvailableDate = new Date(selectedDate);
+            do {
+                nextAvailableDate.setDate(nextAvailableDate.getDate() + 1);
+                nextAvailableDate.setHours(11, 30, 0, 0);
+            } while (nextAvailableDate.getDay() === 0 ||
+                getAvailableTimeSlots(nextAvailableDate.getDay()).length === 0);
+
+            const nextAvailableTimeSlot = getAvailableTimeSlots(
+                nextAvailableDate.getDay())[0];
+            return { time: nextAvailableTimeSlot, date: nextAvailableDate };
         }
 
         const selectedMinutes = timeToMinutes(selectedTime);
+        const closingTime = getAvailableTimeSlots(dayOfWeek).slice(-1)[0];
+        const closingMinutes = timeToMinutes(closingTime);
 
-        // Check if selected time is within available time slots
+        if (selectedMinutes >= closingMinutes - 60) {
+            // If the selected time is within the last hour before closing
+            let nextAvailableDate = new Date(selectedDate);
+            do {
+                nextAvailableDate.setDate(nextAvailableDate.getDate() + 1);
+                nextAvailableDate.setHours(11, 30, 0, 0);
+            } while (nextAvailableDate.getDay() === 0 ||
+                getAvailableTimeSlots(nextAvailableDate.getDay()).length === 0);
+
+            const nextAvailableTimeSlot = getAvailableTimeSlots(
+                nextAvailableDate.getDay())[0];
+            return { time: nextAvailableTimeSlot, date: nextAvailableDate };
+        }
+
         if (availableTimeSlots.includes(selectedTime)) {
-            return selectedTime;  // No adjustment needed for valid time
+            return { time: selectedTime, date: selectedDate };
         }
 
-        // Find the next valid slot or fallback to the next day
-        const nextAvailableSlot = availableTimeSlots.find
-        (slot => timeToMinutes(slot) > selectedMinutes);
-
+        const nextAvailableSlot = availableTimeSlots.find(slot =>
+            timeToMinutes(slot) > selectedMinutes);
         if (nextAvailableSlot) {
-            return nextAvailableSlot;
+            return { time: nextAvailableSlot, date: selectedDate };
         }
 
-        // If no slot is available today, move to the next day's opening slots
-        let nextDay = (dayOfWeek + 1) % 7;
-        let nextAvailableSlots = getAvailableTimeSlots(nextDay);
-        if (nextAvailableSlots.length) {
-            return nextAvailableSlots[0];
-        }
-
-        return null;  // No available slots
+        return { time: availableTimeSlots[0], date: selectedDate };
     }
 
     function updateSubmitButton() {
@@ -153,17 +193,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    termsCheckbox.addEventListener("change", updateSubmitButton);
-    resetCheckboxIfUpdatePage();
-
     function getWeeklyOpeningHours() {
-        return Object.entries(openingHours)
-            .filter(([, hours]) => hours !== "closed")
-            .map(([day, hours]) => `${dayNames[parseInt(day, 10)]}: ${hours}`)
+        return Object.entries(OPENING_HOURS)
+            .filter(([ , hours]) => hours.length > 0)
+            .map(([day, periods]) => {
+                const formattedHours = periods.map(({ start, end }) =>
+                    start + " - " + end).join(", ");
+                return dayNames[parseInt(day, 10)] + ": " +
+                    formattedHours;
+            })
             .join("\n");
     }
 
+    termsCheckbox.addEventListener("change", updateSubmitButton);
+    resetCheckboxIfUpdatePage();
+
     form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
         const name = document.getElementById("id_name").value;
         const email = document.getElementById("id_email").value;
         const phone = document.getElementById("id_phone_number").value;
@@ -172,7 +219,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedDate = new Date(document.getElementById("id_date").value);
         const selectedTime = document.getElementById("id_time").value;
         const occasion = document.getElementById("id_occasion").value;
-        const dayOfWeek = selectedDate.getDay();
+
+        let adjustedDate = selectedDate;
+        let adjustedTime = selectedTime;
         let isValid = true;
         const validationMessages = [];
 
@@ -191,63 +240,20 @@ document.addEventListener("DOMContentLoaded", function () {
             isValid = false;
         }
 
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const selectedDateStart = new Date(selectedDate);
-        selectedDateStart.setHours(0, 0, 0, 0);
-
-        let adjustmentMessage = "";
-        let nextAvailableDate = new Date(today);
-        let closestAvailableTimeSlot = "11:30";
-
         if (!validateDate(selectedDate)) {
-            const formattedDate = selectedDateStart.toDateString();
-
-            if (selectedDateStart <= today) {
-                if (today.getDay() === 6) {
-                    nextAvailableDate.setDate(today.getDate() + 2);
-                } else {
-                    nextAvailableDate.setDate(today.getDate() + 1);
-                }
-                nextAvailableDate.setHours(11, 30, 0, 0);
-                closestAvailableTimeSlot = "11:30";
-
-                if (nextAvailableDate.getDay() === 0) {
-                    nextAvailableDate.setDate(nextAvailableDate.getDate() + 1);
-                }
-            } else if (dayOfWeek === 0) {
-                nextAvailableDate.setDate(selectedDate.getDate() + 1);
-                nextAvailableDate.setHours(11, 30, 0, 0);
-            }
-
-            const generalOpeningHours = getWeeklyOpeningHours();
-
-            adjustmentMessage =
-                `The selected date (${formattedDate}) is either in the past ` +
-                `or on a Sunday, so booking is not possible.\n\n` +
-                `The closest available date is ` +
-                `${nextAvailableDate.toDateString()} ` +
-                `at ${closestAvailableTimeSlot}.\n\n` +
-                `Here are the opening hours for ${dayNames[dayOfWeek]}:\n` +
-                `${openingHours[dayOfWeek].split
-            (",").map(period => period.trim()).join("\n")}\n\n` +
-                `Here are the general opening hours for the week:\n` +
-                `${generalOpeningHours}\n\n` +
-                `Would you like to proceed with this adjusted date and time?`;
-
-            const proceed = confirm(adjustmentMessage);
-
-            if (proceed) {
-                document.getElementById("id_date").value = nextAvailableDate
-                    .toISOString().split("T")[0];
-                document.getElementById
-                ("id_time").value = closestAvailableTimeSlot;
+            adjustedDate = new Date();
+            adjustedDate.setHours(11, 30, 0, 0);
+            if (adjustedDate.getDay() === 6) {
+                adjustedDate.setDate(adjustedDate.getDate() + 2);
             } else {
-                event.preventDefault();
-                return;
+                adjustedDate.setDate(adjustedDate.getDate() + 1);
             }
-
-            isValid = false;
+            if (adjustedDate.getDay() === 0) {
+                adjustedDate.setDate(adjustedDate.getDate() + 1);
+            }
+            document.getElementById("id_date").value = adjustedDate.toISOString
+            ().split("T")[0];
+            adjustedTime = "11:30";
         }
 
         if (!validateOccasion(occasion)) {
@@ -256,39 +262,44 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (!validateGuests(numGuests)) {
-            validationMessages.push("Please enter a valid number of guests.");
-            isValid = false;
-        }
-
-        if (!termsCheckbox.checked) {
-            validationMessages.push("You must accept the terms.");
+            validationMessages.push
+            ("Please enter a number of guests between 1 and 100.");
             isValid = false;
         }
 
         if (!isValid) {
-            alert(validationMessages.join("\n"));
-            event.preventDefault();
+            alert("Please verify that your information is correct:\n" +
+                validationMessages.join("\n"));
             return;
         }
 
-        const adjustedTime = adjustTime(selectedTime, dayOfWeek);
+        const result = adjustTime(adjustedTime, adjustedDate);
+        adjustedTime = result.time;
+        adjustedDate = result.date;
 
-        if (adjustedTime && adjustedTime !== selectedTime) {
-            const formattedDate = selectedDate.toDateString();
-            const timeAdjustmentMessage =
-                `Your selected time (${formattedDate} at ${selectedTime})` +
-                ` is outside our opening hours.\n\n` +
-                `We've moved your reservation ` +
-                `to the closest available time:\n` +
-                `${formattedDate} at ${adjustedTime}.\n\n` +
-                `If you would like to change it, press Cancel.` +
-                `Otherwise, press OK to confirm the adjusted time.`;
+        document.getElementById("id_time").value = adjustedTime;
 
-            if (!confirm(timeAdjustmentMessage)) {
-                event.preventDefault();
-            } else {
-                document.getElementById("id_time").value = adjustedTime;
-            }
+        const generalOpeningHours = getWeeklyOpeningHours();
+        const message = `Reservation Details:
+Note: We Have Adjusted Date: ${adjustedDate.toDateString()} ${adjustedTime}
+--> Do you want to confirm this reservation? <--\n
+>>> Opening Hours for ${dayNames[adjustedDate.getDay()]}:
+${OPENING_HOURS[adjustedDate.getDay()].map(period =>
+    period.start + " - " + period.end).join(", ")}
+>>> Your Current Reservation:
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Number of Guests: ${numGuests}
+Date: ${adjustedDate.toDateString()}
+Time: ${adjustedTime}
+Occasion: ${occasion}
+>>> General Opening Hours for the Week:
+${generalOpeningHours}
+Sunday: Closed`;
+
+        if (confirm(message)) {
+            form.submit();
         }
     });
 });
