@@ -2,14 +2,13 @@
 // https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
 // https://www.w3schools.com/js/js_validation.asp
 // https://regex101.com/r/TGpiRb/1/codegen?language=python
-// https://developer.mozilla.org/..
-// en-US/docs/Web/JavaScript/Reference/Regular_expressions
-// https://developer.mozilla.org/..
-// en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/...
+// .../Reference/Regular_expressions
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/...
+// .../Reference/Global_Objects/Date
 // https://www.w3schools.com/js/js_dates.asp
 // https://formvalidation.io/guide/validators/
 // https://jqueryvalidation.org
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("reservation-form");
     const submitButton = document.getElementById("submit-btn");
@@ -43,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
     };
 
-    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
-                      "Friday", "Saturday"];
+    const dayNames = ["Sunday", "Monday", "Tuesday",
+                      "Wednesday", "Thursday", "Friday", "Saturday"];
 
     function trimInput(input) {
         return input.trim();
@@ -68,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function validateGuests(numGuests) {
-        return Number.isInteger(numGuests) && numGuests >= 1 &&
-            numGuests <= 100;
+        return Number.isInteger
+        (numGuests) && numGuests >= 1 && numGuests <= 100;
     }
 
     function validateDate(selectedDate) {
@@ -93,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function minutesToTime(minutes) {
         const hour = Math.floor(minutes / 60);
         const minute = minutes % 60;
-        return hour.toString().padStart(2, "0") + ":" +
-            minute.toString().padStart(2, "0");
+        return hour.toString().padStart
+        (2, "0") + ":" + minute.toString().padStart(2, "0");
     }
 
     function generateTimeSlots(start, end) {
@@ -119,25 +118,57 @@ document.addEventListener("DOMContentLoaded", function () {
                 endMinutes += 24 * 60;
                 availableSlots = availableSlots.concat(
                     generateTimeSlots(start, "23:59"),
-                    generateTimeSlots("00:00", minutesToTime(
-                        endMinutes % (24 * 60)))
+                    generateTimeSlots
+                    ("00:00", minutesToTime(endMinutes % (24 * 60)))
                 );
             } else {
-                availableSlots = availableSlots.concat(
-                    generateTimeSlots(start, end));
+                availableSlots = availableSlots.concat
+                (generateTimeSlots(start, end));
             }
         });
         return availableSlots;
+    }
+
+    function isBookingAllowed(time, dayOfWeek) {
+        const availableSlots = getAvailableTimeSlots(dayOfWeek);
+        const bookingMinutes = timeToMinutes(time);
+
+        if (timeToMinutes("13:30") <= bookingMinutes &&
+            bookingMinutes <= timeToMinutes("13:30")) {
+            return { allowed: false, message: "This time is not bookable " +
+                    "as it is too close to our closing hours for lunch." };
+        }
+
+        const eveningEndTime = "22:00";
+        if (dayOfWeek !== 5 && timeToMinutes(eveningEndTime) < bookingMinutes) {
+            return { allowed: false, message: "This time is not bookable " +
+                    "as it is too close " +
+                    "to our closing hours for the evening." };
+        }
+
+        if (dayOfWeek === 5 || dayOfWeek === 6) {
+            const nightEndTime = "02:00";
+            if (timeToMinutes(nightEndTime) < bookingMinutes) {
+                return { allowed: false, message:
+                        "This time is not bookable as it is too close " +
+                        " to our closing hours for the night shift." };
+            }
+        }
+
+        if (!availableSlots.includes(time)) {
+            return { allowed: false, message:
+                    "This time is not available for booking." };
+        }
+
+        return { allowed: true, message: "" };
     }
 
     function adjustTime(selectedTime, selectedDate) {
         if (!selectedTime) {
             return { time: null, date: selectedDate };
         }
-
         const dayOfWeek = selectedDate.getDay();
         const availableTimeSlots = getAvailableTimeSlots(dayOfWeek);
-
         if (!availableTimeSlots.length) {
             let nextAvailableDate = new Date(selectedDate);
             do {
@@ -145,40 +176,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 nextAvailableDate.setHours(11, 30, 0, 0);
             } while (nextAvailableDate.getDay() === 0 ||
                 getAvailableTimeSlots(nextAvailableDate.getDay()).length === 0);
-
-            const nextAvailableTimeSlot = getAvailableTimeSlots(
-                nextAvailableDate.getDay())[0];
+            const nextAvailableTimeSlot =
+                  getAvailableTimeSlots(nextAvailableDate.getDay())[0];
             return { time: nextAvailableTimeSlot, date: nextAvailableDate };
         }
-
         const selectedMinutes = timeToMinutes(selectedTime);
-        const closingTime = getAvailableTimeSlots(dayOfWeek).slice(-1)[0];
+        const closingTime = availableTimeSlots.slice(-1)[0];
         const closingMinutes = timeToMinutes(closingTime);
-
         if (selectedMinutes >= closingMinutes - 60) {
-            // If the selected time is within the last hour before closing
             let nextAvailableDate = new Date(selectedDate);
             do {
                 nextAvailableDate.setDate(nextAvailableDate.getDate() + 1);
                 nextAvailableDate.setHours(11, 30, 0, 0);
             } while (nextAvailableDate.getDay() === 0 ||
                 getAvailableTimeSlots(nextAvailableDate.getDay()).length === 0);
-
-            const nextAvailableTimeSlot = getAvailableTimeSlots(
-                nextAvailableDate.getDay())[0];
+            const nextAvailableTimeSlot =
+                  getAvailableTimeSlots(nextAvailableDate.getDay())[0];
             return { time: nextAvailableTimeSlot, date: nextAvailableDate };
         }
-
-        if (availableTimeSlots.includes(selectedTime)) {
+        if (isBookingAllowed(selectedTime, dayOfWeek).allowed) {
             return { time: selectedTime, date: selectedDate };
         }
-
         const nextAvailableSlot = availableTimeSlots.find(slot =>
             timeToMinutes(slot) > selectedMinutes);
         if (nextAvailableSlot) {
             return { time: nextAvailableSlot, date: selectedDate };
         }
-
         return { time: availableTimeSlots[0], date: selectedDate };
     }
 
@@ -199,8 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .map(([day, periods]) => {
                 const formattedHours = periods.map(({ start, end }) =>
                     start + " - " + end).join(", ");
-                return dayNames[parseInt(day, 10)] + ": " +
-                    formattedHours;
+                return dayNames[parseInt(day, 10)] + ": " + formattedHours;
             })
             .join("\n");
     }
@@ -229,17 +251,14 @@ document.addEventListener("DOMContentLoaded", function () {
             validationMessages.push("Please enter a valid full name.");
             isValid = false;
         }
-
         if (!validateEmail(email)) {
             validationMessages.push("Please enter a valid email address.");
             isValid = false;
         }
-
         if (!validatePhone(phone)) {
             validationMessages.push("Please enter a valid phone number.");
             isValid = false;
         }
-
         if (!validateDate(selectedDate)) {
             adjustedDate = new Date();
             adjustedDate.setHours(11, 30, 0, 0);
@@ -251,41 +270,40 @@ document.addEventListener("DOMContentLoaded", function () {
             if (adjustedDate.getDay() === 0) {
                 adjustedDate.setDate(adjustedDate.getDate() + 1);
             }
-            document.getElementById("id_date").value = adjustedDate.toISOString
-            ().split("T")[0];
+            document.getElementById
+            ("id_date").value = adjustedDate.toISOString().split("T")[0];
             adjustedTime = "11:30";
         }
-
         if (!validateOccasion(occasion)) {
             validationMessages.push("Please describe your occasion.");
             isValid = false;
         }
-
         if (!validateGuests(numGuests)) {
-            validationMessages.push
-            ("Please enter a number of guests between 1 and 100.");
+            validationMessages.push("Please enter a number of guests " +
+                                    "between 1 and 100.");
             isValid = false;
         }
 
         if (!isValid) {
-            alert("Please verify that your information is correct:\n" +
-                validationMessages.join("\n"));
+            alert("Please verify that your information " +
+                  "is correct:\n" + validationMessages.join("\n"));
             return;
         }
 
         const result = adjustTime(adjustedTime, adjustedDate);
         adjustedTime = result.time;
         adjustedDate = result.date;
-
         document.getElementById("id_time").value = adjustedTime;
 
         const generalOpeningHours = getWeeklyOpeningHours();
         const message = `Reservation Details:
 Note: We Have Adjusted Date: ${adjustedDate.toDateString()} ${adjustedTime}
---> Do you want to confirm this reservation? <--\n
+--> Do you want to confirm this reservation? <--
+
 >>> Opening Hours for ${dayNames[adjustedDate.getDay()]}:
-${OPENING_HOURS[adjustedDate.getDay()].map(period =>
-    period.start + " - " + period.end).join(", ")}
+${OPENING_HOURS[adjustedDate.getDay()].map
+        (period => period.start + " - " + period.end).join(", ")}
+
 >>> Your Current Reservation:
 Name: ${name}
 Email: ${email}
@@ -294,12 +312,13 @@ Number of Guests: ${numGuests}
 Date: ${adjustedDate.toDateString()}
 Time: ${adjustedTime}
 Occasion: ${occasion}
+
 >>> General Opening Hours for the Week:
-${generalOpeningHours}
-Sunday: Closed`;
+${generalOpeningHours}`;
 
         if (confirm(message)) {
             form.submit();
         }
     });
 });
+
